@@ -1,0 +1,15 @@
+{
+  "name": "apartments",
+  "version": "1.0.0",
+  "description": "apartment management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u0016https://github.com/teamsquirtle29/apartments.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
