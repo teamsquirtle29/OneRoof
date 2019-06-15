@@ -51,5 +51,29 @@ module.exports = {
       res.locals.result = result.rows;
       return next();
     })
-  }
+  },
+
+  getMessages(req, res, next) {
+    let queryString = 'SELECT * FROM messages WHERE (sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)';
+    let values = [req.body.sender_id, req.body.receiver_id];
+    db.query(queryString, values, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.locals.result = result.rows;
+      return next();
+    })
+  },
+
+  postMessages(req, res, next) {
+    let queryString = 'INSERT INTO messages (text, sender_id, receiver_id, timestamp) VALUES ($1, $2, $3, $4) RETURNING *';
+    let values = [req.body.text, req.body.sender_id, req.body.receiver_id, req.body.timestamp];
+    db.query(queryString, values, (err, result) => {
+      if(err){
+        return err;
+      };
+      res.locals.result = result.rows;
+      return next();
+    });
+  },
 };

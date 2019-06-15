@@ -25,9 +25,18 @@ app.get('/event', userController.getEvent, (req,res)=>{
   res.status(200).json(res.locals.result);
 });
 
-// get message
-// post message
+app.delete('/event', managerController.deleteEvent, (req, res) => {
+  res.status(200).json({'msg': 'event successfully deleted'});
+});
 
+// get message
+app.get('/messages', userController.getMessages, (req, res) => {
+  res.status(200).json(res.locals.result);
+})
+// post message
+app.post('/messages', userController.postMessages, (req, res)=>{
+  res.status(200).json(res.locals.result);
+})
 // manager routes
   // make payment as received
   // message

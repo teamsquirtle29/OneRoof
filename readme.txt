@@ -25,10 +25,25 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
       if the role is 'manager', display all events
       if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
 
+  '/messages'
+    GET: gets all messages sent or received by a user
+      request body expects 'sender_id' and 'receiver_id'
+    POST:
+
 ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
 
   '/allUsers'
     GET: gets a list of all users for managers
+
+  '/events'
+    DELETE: deletes event from events table
+      request body expects an event id
+
+
+
+
+
+
 
 === Front End === 
 ** LOGIN VIEW ** 

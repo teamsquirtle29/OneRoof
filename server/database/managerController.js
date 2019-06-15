@@ -11,5 +11,16 @@ module.exports = {
       res.locals.result = result.rows;
       return next();
     });
+  },
+
+  deleteEvent(req, res, next) {
+    const queryString = 'DELETE FROM events WHERE _id = $1'
+    const values = [req.body.id];
+    db.query(queryString, values, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      return next();
+    });
   }
 };
