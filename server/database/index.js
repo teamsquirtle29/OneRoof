@@ -5,7 +5,7 @@ const pool = new Pool({
   });
 
   // creating table of residents
-  pool.query('CREATE TABLE IF NOT EXISTS users (_id SERIAL PRIMARY KEY, name VARCHAR, apt_id INTEGER, role VARCHAR)', (err, result)=>{
+  pool.query('CREATE TABLE IF NOT EXISTS users (_id SERIAL PRIMARY KEY, name VARCHAR, apt_id INTEGER, role VARCHAR, pwd VARCHAR)', (err, result)=>{
       if(err) throw err;
       console.log(result);
   });
