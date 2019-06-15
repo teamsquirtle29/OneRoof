@@ -67,6 +67,7 @@ module.exports = {
 
   postMessages(req, res, next) {
     let queryString = 'INSERT INTO messages (text, sender_id, receiver_id, timestamp) VALUES ($1, $2, $3, $4) RETURNING *';
+    //do data sanitizing to prevent Will from hacking this code
     let values = [req.body.text, req.body.sender_id, req.body.receiver_id, req.body.timestamp];
     db.query(queryString, values, (err, result) => {
       if(err){
