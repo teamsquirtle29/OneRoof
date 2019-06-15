@@ -6,7 +6,6 @@ const userController = require('./database/userController.js');
 app.use(bodyParser.json());
 
 app.post('/user', userController.postUser, (req, res) => {
-  console.log(req.body);
   res.json({'msg': 'successfully posted to database'});
 });
 
