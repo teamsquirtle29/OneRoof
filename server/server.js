@@ -34,7 +34,7 @@ app.get('/event', userController.getEvent, (req,res)=>{
   // get all users (residents, maintenance, etc)
 app.get('/allUsers', managerController.getAllUsers, (req, res) => {
   res.status(200).json(res.locals.result);
-})
+});
 
 // resident routes
   // make payment
