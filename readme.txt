@@ -1,4 +1,5 @@
-Uncomment server/database/index.js to create database tables
+(Uncomment server/database/index.js to create database tables if they don't exist.
+Create a new url if needed. We used ElephantSQL. pgadmin is another option.)
 
 API GUIDE:
 
@@ -8,7 +9,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     POST: creates a user in 'users' table
       expects 'pwd', 'name', 'apt_id', and 'role' in request body
       request body must have 'Content-Type' of 'application/json'
-    GET: authenticates (stretch feature) user and finds their role if they exist 
+    GET: login request. authenticates (stretch feature) user and finds their role if they exist 
       looks for 'name' and 'pwd' in request header
 
   '/events'
@@ -22,7 +23,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     GET: gets all events (only events in the future, ignores events that have passed) from table depending on role
       expects 'role' (role of current user) and 'user_id' (id of current user) in request header
       if the role is 'manager', display all events
-      if the role is 'resident', display only public events (with resident_id of NULL) or private events where their id equals the event's 'resident_id'
+      if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
 
 ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
 

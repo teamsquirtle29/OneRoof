@@ -40,10 +40,8 @@ module.exports = {
     let values = [];
     if(req.headers.role === 'management') {
       queryString = 'SELECT * FROM events WHERE date >= NOW()';
-      // queryString = 'SELECT * FROM events';
     } else {
       queryString = 'SELECT * FROM events WHERE date >= NOW() AND (resident_id IS NULL OR resident_id = $1)';
-      // queryString = 'SELECT * FROM events WHERE resident_id IS NULL OR resident_id = $1';
       values = [req.headers.user_id];
     }
     db.query(queryString, values, (err, result) => {

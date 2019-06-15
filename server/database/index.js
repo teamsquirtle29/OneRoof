@@ -4,7 +4,7 @@ const pool = new Pool({
     connectionString: url,
   });
 
-// // creating table of residents
+// // creating table of users
 // pool.query('CREATE TABLE IF NOT EXISTS users (_id SERIAL PRIMARY KEY, name VARCHAR, apt_id INTEGER, role VARCHAR, pwd VARCHAR)', (err, result)=>{
 //   if(err) throw err;
 // });
@@ -15,7 +15,7 @@ const pool = new Pool({
 // });
 
 // //creating table of messages
-// pool.query('CREATE TABLE IF NOT EXISTS messages (_id SERIAL PRIMARY KEY, text VARCHAR, user1_id INTEGER, user2_id INTEGER, timestamp TIMESTAMP)', (err, result)=>{
+// pool.query('CREATE TABLE IF NOT EXISTS messages (_id SERIAL PRIMARY KEY, text VARCHAR, sender_id INTEGER, receiver_id INTEGER, timestamp TIMESTAMP)', (err, result)=>{
 //     if(err) throw err;
 // });
 
