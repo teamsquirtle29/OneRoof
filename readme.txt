@@ -61,6 +61,8 @@ ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
     GET: gets all payment history associated with a user / apartment
       request body expects 'apt_id'
 
+TODO
+  allow manager to also see who HAS paid
   
 
 
