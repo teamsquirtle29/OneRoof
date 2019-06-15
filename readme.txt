@@ -28,7 +28,8 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
   '/messages'
     GET: gets all messages sent or received by a user
       request body expects 'sender_id' and 'receiver_id'
-    POST:
+    POST: post message sent by user_id.
+      request body expects 'text', 'sender_id', 'receiver_id' and 'timestamp'
 
 ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
 
@@ -38,6 +39,29 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   '/events'
     DELETE: deletes event from events table
       request body expects an event id
+
+  '/payments'
+    POST: adds a pending payment to the payments table for every user
+      does not require any additional info to be sent
+    PUT: changes a pending payment's 'received' field from false to true
+      expects in request body 'apt_id' and 'month' (apartment that owes rent and month when rent is due)
+  
+  'payments/overdue'
+    GET: get all overdue payments (where received is false)
+
+  'payments/now'
+    GET: get all payment information associated with the current month
+
+ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
+  '/payments/send'
+    PUT: pay rent. update 'sent' field in payments table from false to true
+    request body expects 'apt_id' and 'month'
+
+  '/payments/history'
+    GET: gets all payment history associated with a user / apartment
+      request body expects 'apt_id'
+
+  
 
 
 

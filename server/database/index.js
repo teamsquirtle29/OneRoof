@@ -1,4 +1,5 @@
 const { Pool } = require('pg')
+// create a different url using ElephantSQL.
 let url = 'postgres://qjfbqnie:1ZZ5p3UdKfV-Z31hgTCWSs28dnijXFDW@raja.db.elephantsql.com:5432/qjfbqnie'
 const pool = new Pool({
     connectionString: url,

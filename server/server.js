@@ -5,6 +5,7 @@ const userController = require('./database/userController.js');
 const managerController = require('./database/managerController.js');
 const residentController = require('./database/residentController.js');
 const maintenanceController = require('./database/maintenanceController.js');
+const paymentRouter = require('./paymentRouter.js');
 
 app.use(bodyParser.json());
 
@@ -37,23 +38,20 @@ app.get('/messages', userController.getMessages, (req, res) => {
 app.post('/messages', userController.postMessages, (req, res)=>{
   res.status(200).json(res.locals.result);
 })
-// manager routes
-  // make payment as received
-  // message
-  // get all users (residents, maintenance, etc)
+
 app.get('/allUsers', managerController.getAllUsers, (req, res) => {
   res.status(200).json(res.locals.result);
 });
 
-// resident routes
-  // make payment
-  // request maintenance
-  // message
+app.use('/payments', paymentRouter);
 
-// maintenance routes
-  // message landlord or residents
-  // accept maintenance requests
-  // end maintenance
+//error handling
+app.use((req, res, next) => {
+  res.status(404).send("Sorry can't find that!")
+})
 
+app.use((err, req, res, next) =>{
+  res.status(400).json({'msg':err});
+})
 
-app.listen(3000);
+app.listen(3001);
