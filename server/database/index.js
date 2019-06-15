@@ -5,33 +5,28 @@ const pool = new Pool({
   });
 
   // creating table of residents
-  pool.query('CREATE TABLE IF NOT EXISTS users (_id SERIAL PRIMARY KEY, name VARCHAR, apt_id INTEGER, role VARCHAR)', (err, result)=>{
+  pool.query('CREATE TABLE IF NOT EXISTS users (_id SERIAL PRIMARY KEY, name VARCHAR, apt_id INTEGER, role VARCHAR, pwd VARCHAR)', (err, result)=>{
       if(err) throw err;
-      console.log(result);
   });
 
   //creating table of payment history
   pool.query('CREATE TABLE IF NOT EXISTS payments (_id SERIAL PRIMARY KEY, apt_id INTEGER, sent BOOLEAN, received BOOLEAN, month INTEGER)', (err, result)=>{
     if(err) throw err;
-    console.log(result);
 });
 
 //creating table of messages
   pool.query('CREATE TABLE IF NOT EXISTS messages (_id SERIAL PRIMARY KEY, text VARCHAR, user1_id INTEGER, user2_id INTEGER, timestamp TIMESTAMP)', (err, result)=>{
     if(err) throw err;
-    console.log(result);
 });
 
 //creating table of apartments
 pool.query('CREATE TABLE IF NOT EXISTS apartments (_id SERIAL PRIMARY KEY, address INTEGER, rent INTEGER)', (err, result)=>{
     if(err) throw err;
-    console.log(result);
 });
 
 //creating table of maintenance requests --> STRECH FEATURE S2
 pool.query('CREATE TABLE IF NOT EXISTS maintenance (_id SERIAL PRIMARY KEY, apt_id INTEGER, description VARCHAR, status VARCHAR, user_id INTEGER)', (err, result)=>{
     if(err) throw err;
-    console.log(result);
 });
 
 //exporting query function for server requests
