@@ -23,10 +23,10 @@ class MessageContainer extends Component {
     return (
       <div>
         <Chat id={this.props.id} receiver={this.state.currentlyMessaging}/>
-        {/* {
+        {
           this.props.role === 'management' &&
-          <UserList handleChange={this.changeMessageReceiver}/>
-        } */}
+          <UserList handleChange={this.changeMessageReceiver} userList={this.props.userList}/>
+        }
       </div>
     );
   }

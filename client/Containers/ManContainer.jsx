@@ -10,7 +10,7 @@ class ManContainer extends Component {
   render() {
     return (
       <div>
-        <MessageContainer />
+        <MessageContainer userList={this.props.userList}/>
       </div>
     );
   } 
