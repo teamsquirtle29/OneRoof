@@ -7,7 +7,7 @@ import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
 import { bindActionCreators } from 'redux';
 
-const mapStateToProps = ({ store }) => ({
+const mapStateToProps = store => ({
   // add pertinent state here
   username: store.user.username,
   password: store.user.password,
@@ -31,7 +31,7 @@ class MainContainer extends Component {
     let Display = [];
     
     const ManContainer = <ManContainer key="mainCon1" />
-    const TenantContainer = <UserContainer key="mainCon2" />
+    const TenantContainer = <TenantContainer key="mainCon2" />
 
     if(this.props.role === 'manager'){
       Display.push(ManContainer);
