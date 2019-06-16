@@ -6,6 +6,7 @@ class ManContainer extends Component {
     super(props);
   }
 
+  //component did mount get all users
   render() {
     return (
       <div>
