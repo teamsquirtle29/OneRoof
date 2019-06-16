@@ -4,13 +4,11 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const userController = require('./database/userController.js');
 const managerController = require('./database/managerController.js');
-const residentController = require('./database/residentController.js');
-const maintenanceController = require('./database/maintenanceController.js');
 const paymentRouter = require('./paymentRouter.js');
 
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(path.join(__dirname, '../')));
 
 // routes for multiple user types
 app.post('/user', userController.postUser, (req, res) => {
