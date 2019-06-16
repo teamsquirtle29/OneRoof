@@ -12,8 +12,9 @@ module.exports = {
   },
 
   getUser(req, res, next) {
-    const queryString = 'SELECT * FROM users WHERE name = $1 AND pwd = $2';
-    const values = [req.headers.name, req.headers.pwd];
+    const queryString = 'SELECT * FROM users WHERE pwd = $1 AND name = $2';
+    console.log(req.headers);
+    const values = [req.headers.pwd, req.headers.name];
     db.query(queryString, values, (err, result) => {
       if (err) {
         return next(err);
