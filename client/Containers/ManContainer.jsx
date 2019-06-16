@@ -9,7 +9,7 @@ class ManContainer extends Component {
     return (
       <div> </div>
     );
-  }
+  } 
 }
 
 export default ManContainer;
