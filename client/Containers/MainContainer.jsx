@@ -6,8 +6,6 @@ import * as actions from '../Actions/actions.js';
 import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
 import { bindActionCreators } from 'redux';
-import ManContainer from './ManContainer.jsx';
-import UserContainer from './UserContainer.jsx';
 
 const mapStateToProps = ({ lessons }) => ({
   // add pertinent state here

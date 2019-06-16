@@ -46,6 +46,10 @@ app.get('/allUsers', managerController.getAllUsers, (req, res) => {
   res.status(200).json(res.locals.result);
 });
 
+app.get('/allApartments', managerController.getAllApartments, (req, res) => {
+  res.status(200).json(res.locals.result);
+});
+
 app.use('/payments', paymentRouter);
 
 //error handling

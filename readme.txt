@@ -36,6 +36,9 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   '/allUsers'
     GET: gets a list of all users for managers
 
+  '/allApartments'
+    GET: gets a list of all apartments for manager
+
   '/events'
     DELETE: deletes event from events table
       request body expects an event id
