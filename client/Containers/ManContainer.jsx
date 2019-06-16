@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import MessageContainer from './MessageContainer.jsx';
 
 class ManContainer extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ class ManContainer extends Component {
 
   render() {
     return (
-      <div> </div>
+      <div>
+        <MessageContainer />
+      </div>
     );
   } 
 }

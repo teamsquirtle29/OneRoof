@@ -27,7 +27,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
 
   '/messages'
     GET: gets all messages sent or received by a user
-      request body expects 'sender_id' and 'receiver_id'
+      request headers expects 'sender_id' and 'receiver_id'
     POST: post message sent by user_id.
       request body expects 'text', 'sender_id', 'receiver_id' and 'timestamp'
 
