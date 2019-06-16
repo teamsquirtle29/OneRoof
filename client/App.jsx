@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import MainContainer from './Containers/MainContainer.jsx'
+import { connect } from 'react-redux';
 import Login from './Components/login.jsx';
-//import * as userActions from '../Actions/userActions.js';
-//import * as manActions from '../Actions/manActions.js';
+import * as userActions from './Actions/userActions.js';
+import * as manActions from './Actions/manActions.js';
+import * as tenantActions from './Actions/tenantActions.js';
 import { bindActionCreators } from 'redux';
 
-const mapStateToProps = ({ store }) => ({
+const mapStateToProps = store => ({
   // add pertinent state here
   username: store.user.username,
   password: store.user.password,
   role: store.user.role,
-  login: store.user
+  login: store.user.login,
+  apt: store.user.apt,
+  aptList: store.user.aptList
 });
 
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators({ ...userActions, manActions, tenantActions }, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  updateUsername: (name) => dispatch(userActions.updateUsername(name)),
+  updatePassword: (pass) => dispatch(userActions.updatePassword(pass)),
+  updateEvents: () => dispatch(userActions.updateUsername()),
+  signup: () => dispatch(userActions.signup()),
+  signIn: () => dispatch(userActions.signIn()),
+  updateApt: (apt) => dispatch(userActions.updateApt(apt)),
+  updateRole: (role) => dispatch(userActions.updateRole(role)),
+})
 
 class App extends Component {
   constructor(props) {
@@ -26,20 +34,18 @@ class App extends Component {
   }
   
   render() {
-    let Display = [];
-    const logComponent = <Login key="mainCon1" signIn={this.props.signIn} username={this.props.username} password={this.props.password} 
-    updateUsername={this.props.updateUsername} updatePassword={this.props.updatePassword} signup={this.props.signup}/>;
 
-    const MainContainer = <MainContainer key="mainCon2" useId={this.props.userId}/>
-    const header1 = <h1>Welcome to 1Roof</h1>
+    const logComponent = <Login signIn={this.props.signIn} apt={this.props.apt} role={this.props.role} username={this.props.username} password={this.props.password} 
+    aptList={this.props.aptList} updateApt={this.props.updateApt} updateRole={this.props.updateRole} updateUsername={this.props.updateUsername} updatePassword={this.props.updatePassword} signup={this.props.signup}/>;
 
-    if(this.props.login){
-      Display.push(MainContainer);
-    } else Display.push(header1, logComponent);
+    const mainContainer = <MainContainer key="mainCon2" useId={this.props.userId}/>;
+
+    console.log(this.props.login);
 
     return(
       <div className="App">
-        {Display}
+        <h1>Welcome to 1Roof</h1>
+        { this.props.login === false ? logComponent : mainContainer }
       </div>
     )
   }

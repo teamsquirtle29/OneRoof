@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 // import from child components...
 import * as userActions from '../Actions/userActions.js';
 import * as manActions from '../Actions/manActions.js';
+import * as tenantActions from '../Actions/tenantActions.js';
 import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
-import { bindActionCreators } from 'redux';
 
 const mapStateToProps = store => ({
   // add pertinent state here
@@ -15,11 +15,9 @@ const mapStateToProps = store => ({
 });
 
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators({ ...userActions, manActions, tenantActions }, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+
+})
 
 class MainContainer extends Component {
   constructor(props) {
@@ -30,12 +28,12 @@ class MainContainer extends Component {
 
     let Display = [];
     
-    const ManContainer = <ManContainer key="mainCon1" />
-    const TenantContainer = <TenantContainer key="mainCon2" />
+    const manContainer = <ManContainer key="mainCon1" />
+    const tenantContainer = <TenantContainer key="mainCon2" />
 
     if(this.props.role === 'manager'){
-      Display.push(ManContainer);
-    } else if(this.props.role === 'tenant') Display.push(TenantContainer);
+      Display.push(manContainer);
+    } else if(this.props.role === 'tenant') Display.push(tenantContainer);
 
     return(
       <div className="container">

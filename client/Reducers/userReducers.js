@@ -5,20 +5,30 @@ import * as types from '../Constants/actionTypes';
 const initialState = {
   username: '',
   password: '',
-  role: '',
+  role: 'Tenant',
+  apt: '1',
   userId: '',
   events: [],
   aptId: '',
-  login: false
+  login: false,
+  aptList: ['1', '2', '3', '4', '5']
 };
 
 const userReducers = (state = initialState, action) => {
+  let events;
 
   switch(action.type) {
+    case types.UPDATE_EVENTS:
+
+      return {
+        ...state,
+        events: action.payload,
+      }
+
     case types.UPDATE_USERNAME:
       return {
         ...state,
-        role: action.payload,
+        username: action.payload,
       }
 
     case types.UPDATE_PASSWORD:
@@ -28,11 +38,13 @@ const userReducers = (state = initialState, action) => {
       }
     
     case types.UPDATE_LOGIN:
+      console.log('User: ', action.payload.userId);
       return {
         ...state,
-        userId: action.payload,
-        aptId: '',
+        userId: action.payload.userId,
+        aptId: action.payload.aptId,
         password: '',
+        role: action.payload.role,
         login: true,
       }
     
@@ -41,6 +53,15 @@ const userReducers = (state = initialState, action) => {
         ...state,
         role: action.payload,
       }
+
+    case types.UPDATE_APT:
+        return {
+          ...state,
+          apt: action.payload,
+        }
+
+    default:
+      return state;
   }
 }
 export default userReducers;

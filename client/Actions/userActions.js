@@ -6,6 +6,11 @@ export const updateUsername = (value) => ({
   payload: value
 })
 
+export const updateApt = (value) => ({
+  type: types.UPDATE_APT,
+  payload: value
+})
+
 export const updatePassword = (value) => ({
   type: types.UPDATE_PASSWORD,
   payload: value
@@ -16,10 +21,40 @@ export const updateLogin = (data) => ({
   payload: data
 })
 
-export const updateRole = (data) => ({
+export const updateRole = (value) => ({
   type: types.UPDATE_ROLE,
+  payload: value
+})
+
+export const updateEvents = (data) => ({
+  type: types.UPDATE_EVENTS,
   payload: data
 })
+
+
+export function getEvents () {
+  return (dispatch, getState) => {
+    const url = '/event'
+    const state = getState();
+    const header = {
+      "userId": state.user.userId,
+      "role": state.user.role
+    }
+    console.log(body);
+    return axios.get(url, {
+      headers: header
+    })
+      .then(response => {
+        return response.data
+      }).then(data => {
+        console.log(data)
+        dispatch({
+          type: types.UPDATE_EVENTS,
+          payload: data
+        })
+      })
+    }
+}
 
 // on sign up, a post request is sent/stored into our database. 
 // will return data of apt_id, name, pwd, and role
@@ -28,10 +63,10 @@ export function signup () {
     const url = '/user'
     const state = getState();
     const body = {
-      username: state.auth.username,
-      password: state.auth.password,
-      role: state.auth.role,
-      aptNum: state.auth.aptNum
+      "name": state.user.username,
+      "pwd": state.user.password,
+      "role": state.user.role,
+      "apt_id": state.user.apt
     }
     console.log(body);
     return axios.post(url, body)
@@ -40,9 +75,9 @@ export function signup () {
       }).then(data => {
         console.log(data)
         let userData = {
-          userId: data.rows[0]['_id'],
-          aptId: data.rows[0]['apt_id'],
-          role: data.rows[0]['role']
+          userId: data[0]['_id'],
+          aptId: state.user.username,
+          role: state.user.role
         }
         dispatch({
           type: types.UPDATE_LOGIN,
@@ -58,22 +93,23 @@ export function signIn () {
   return (dispatch, getState) => {
     const url = '/user'
     const state = getState();
-    const header = {
-      username: state.auth.username,
-      password: state.auth.password
-    }
-    console.log(body);
+    // const header = {
+    //   "name": state.user.username,
+    //   "pwd": state.user.password
+    // }
+    //console.log(header);
     return axios.get(url, {
-      headers: header
+      headers: {
+        "name": state.user.username,
+        "pwd": state.user.password
+      }
     })
       .then(response => {
-        return response.data
-      }).then(data => {
-        console.log(data)
+        //console.log(response);
         let userData = {
-          userId: data.rows[0]['_id'],
-          aptId: data.rows[0]['apt_id'],
-          role: data.rows[0]['role']
+          "userId": response.data[0]['_id'],
+          "aptId": response.data[0]['apt_id'],
+          "role": response.data[0]['role']
         }
         dispatch({
           type: types.UPDATE_LOGIN,
@@ -82,3 +118,4 @@ export function signIn () {
       })
     } 
 }
+

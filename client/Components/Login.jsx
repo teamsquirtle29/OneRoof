@@ -1,10 +1,13 @@
 import React from 'react';
 import AptNum from './aptDropDown.jsx'
-// let random = "username"
+
 const Login = props => {
   const aptDrop = [];
-  props.aptList.forEach(apt => aptDrop.push(<AptNum key={'select' + apt} 
-    apt={apt} aptSelect={props.aptSelect} />));
+  const aptNumList = props.aptList;
+  console.log(props.apt);
+  console.log(props.username);
+  console.log(props.role);
+  aptNumList.forEach(num => aptDrop.push(<AptNum aptNum={num} />));
 
   return(
   <div key="loginPageMain" className="innerbox" id="loginMain">
@@ -28,14 +31,14 @@ const Login = props => {
         <input key="sign1" type="text" id="signUser" value={props.username} placeholder="Username" onChange={e => props.updateUsername(e.target.value)}/>
         <input key="sign2" type="password" id="signPass" value={props.password} placeholder="Password" onChange={e => props.updatePassword(e.target.value)}/>
         Apt#
-        <select>
+        <select value={props.apt} onChange={e => props.updateApt(e.target.value)}>
           {aptDrop}
         </select>
         Role
-        <select>
-          <option>Tenant</option>
-          <option>Manager</option>
-          <option>Maintenance</option>
+        <select value={props.role} onChange={e => props.updateRole(e.target.value)} >
+          <option value="Tenant">Tenant</option>
+          <option value="Manager">Manager</option>
+          <option value="Maintenance">Maintenance</option>
           </select>
         <button key="sign3" className="logButton" type="submit">Submit</button>
       </form>
