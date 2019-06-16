@@ -10,7 +10,7 @@ class MessageContainer extends Component {
   render() {
     return (
       <div>
-          <Chat />
+        <Chat />
       </div>
     );
   }
