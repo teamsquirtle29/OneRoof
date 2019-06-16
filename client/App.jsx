@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import MainContainer from './Containers/MainContainer.jsx'
-import Login from './Components/Login.jsx'
+import Login from './Components/login.jsx';
+//import * as userActions from '../Actions/userActions.js';
+//import * as manActions from '../Actions/manActions.js';
+import { bindActionCreators } from 'redux';
 
-const mapStateToProps = ({ lessons }) => ({
+const mapStateToProps = ({ store }) => ({
   // add pertinent state here
-
+  username: store.auth.username,
+  password: store.auth.password,
+  role: store.auth.role
 });
 
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators({ ...userActions, manActions, tenantActions }, dispatch)
+  };
+};
 
 class App extends Component {
   constructor(props) {

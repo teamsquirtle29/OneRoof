@@ -9,10 +9,11 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
+    historyApiFallback: true,
     publicPath: '/build/',
     port: 8080,
     proxy: {
-      '/api': {
+      '/': {
         target: 'http://localhost:3000',
       }
     }
