@@ -17,6 +17,10 @@ paymentRouter.get('/overdue', managerController.getOverdue, (req, res) =>{
     res.status(200).json(res.locals.result);
 });
 
+paymentRouter.get('/paid', managerController.getCompletedPayments, (req, res) => {
+  res.status(200).json(res.locals.result);
+})
+
 paymentRouter.get('/current', managerController.getCurrent, (req, res) => {
     res.status(200).json(res.locals.result);
 });

@@ -6,10 +6,11 @@ class ManContainer extends Component {
     super(props);
   }
 
+  //component did mount get all users
   render() {
     return (
       <div>
-        <MessageContainer />
+        <MessageContainer userList={this.props.userList}/>
       </div>
     );
   } 

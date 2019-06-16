@@ -12,7 +12,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     GET: login request. authenticates (stretch feature) user and finds their role if they exist 
       looks for 'name' and 'pwd' in request header
 
-  '/events'
+  '/event'
     POST: creates event in 'events' table
       don't send this request until you've checked the role of the current user.
       management and maintenance can send a post to this route, residents cannot.
@@ -22,7 +22,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
         (e.g. accepted maintenance request, apartment inspection, etc)
     GET: gets all events (only events in the future, ignores events that have passed) from table depending on role
       expects 'role' (role of current user) and 'user_id' (id of current user) in request header
-      if the role is 'manager', display all events
+      if the role is 'management', display all events
       if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
 
   '/messages'
@@ -39,7 +39,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   '/allApartments'
     GET: gets a list of all apartments for manager
 
-  '/events'
+  '/event'
     DELETE: deletes event from events table
       request body expects an event id
 
@@ -52,6 +52,9 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   'payments/overdue'
     GET: get all overdue payments (where received is false)
 
+  'payments/paid'
+    GET: get all completed payments (where received is true)
+
   'payments/now'
     GET: get all payment information associated with the current month
 
@@ -63,9 +66,6 @@ ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
   '/payments/history'
     GET: gets all payment history associated with a user / apartment
       request body expects 'apt_id'
-
-TODO
-  allow manager to also see who HAS paid
   
 
 

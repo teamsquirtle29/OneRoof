@@ -81,6 +81,17 @@ module.exports = {
     })
   },
 
+  getCompletedPayments(req, res, next) {
+    const queryString = 'SELECT * FROM payments WHERE received = true';
+    db.query(queryString, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.locals.result = result.rows;
+      return next();
+    })
+  },
+
   getCurrent(req, res, next) {
     const date = new Date(Date.now());
     const month = date.getMonth();
