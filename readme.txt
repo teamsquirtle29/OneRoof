@@ -12,7 +12,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     GET: login request. authenticates (stretch feature) user and finds their role if they exist 
       looks for 'name' and 'pwd' in request header
 
-  '/events'
+  '/event'
     POST: creates event in 'events' table
       don't send this request until you've checked the role of the current user.
       management and maintenance can send a post to this route, residents cannot.
@@ -39,7 +39,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   '/allApartments'
     GET: gets a list of all apartments for manager
 
-  '/events'
+  '/event'
     DELETE: deletes event from events table
       request body expects an event id
 
