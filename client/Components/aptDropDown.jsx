@@ -3,7 +3,7 @@ import React from 'react';
 
 const AptDropDown = (props) => {
   return (
-    <option key={props.key} value={'Apt# ' + props.apt} />
+    <option key={'select' + props.aptNum} value={props.aptNum}>{props.aptNum}</option>
   )
 }
 
