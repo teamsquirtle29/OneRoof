@@ -5,10 +5,9 @@ import * as types from '../Constants/actionTypes';
 const initialState = {
   username: '',
   password: '',
-  role: 'Tenant',
-  apt: '1',
+  role: '',
+  apt: '',
   userId: '',
-  events: [],
   aptId: '',
   login: false,
   aptList: ['1', '2', '3', '4', '5']
@@ -18,12 +17,6 @@ const userReducers = (state = initialState, action) => {
   let events;
 
   switch(action.type) {
-    case types.UPDATE_EVENTS:
-
-      return {
-        ...state,
-        events: action.payload,
-      }
 
     case types.UPDATE_USERNAME:
       return {

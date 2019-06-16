@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import from child components...
 import * as userActions from '../Actions/userActions.js';
-import * as manActions from '../Actions/manActions.js';
-import * as tenantActions from '../Actions/tenantActions.js';
 import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
 
 const mapStateToProps = store => ({
   // add pertinent state here
   username: store.user.username,
-  password: store.user.password,
   role: store.user.role,
 });
 
@@ -25,23 +22,18 @@ class MainContainer extends Component {
   }
 
   render() {
-
-    let Display = [];
     
-    const manContainer = <ManContainer key="mainCon1" />
-    const tenantContainer = <TenantContainer key="mainCon2" />
-
-    if(this.props.role === 'manager'){
-      Display.push(manContainer);
-    } else if(this.props.role === 'tenant') Display.push(tenantContainer);
+    const manContainer = <ManContainer key="manCon1" />
+    const tenantContainer = <TenantContainer key="tenCon2" />
 
     return(
-      <div className="container">
-        <div className="outerBox">
-          <h1 id="header">Welcome to 1Roof {this.props.username}</h1>
-          { Display }
+        <div className="container">
+          <div className="outerBox">
+            <h1 id="header">{this.props.username}'s Dashboard {this.props.role}</h1>
+            { this.props.role === 'Manager' ? manContainer : tenantContainer }
+            {/* {manContainer} */}
+          </div>
         </div>
-      </div>
     )
   }
 }

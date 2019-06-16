@@ -13,18 +13,18 @@ class MessageContainer extends Component {
     this.changeMessageReceiver = this.changeMessageReceiver.bind(this);
   }
 
-  changeMessageReceiver(id) {
+  changeMessageReceiver(user) {
     this.setState({
-      currentlyMessaging: id
+      currentlyMessaging: user
     });
   }
 
   render() {
     return (
       <div>
-        <Chat id={this.props.id} receiver={this.state.currentlyMessaging}/>
+        <Chat userId={this.props.userId} receiver={this.state.currentlyMessaging}/>
         {
-          this.props.role === 'management' &&
+          this.props.role === 'manager' &&
           <UserList handleChange={this.changeMessageReceiver} userList={this.props.userList}/>
         }
       </div>
