@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '../')));
 
 // routes for multiple user types
 app.post('/user', userController.postUser, (req, res) => {
-  res.status(200).json({'msg': 'successfully posted to database'});
+  res.status(200).json(res.locals.result);
 });
 
 app.get('/user', userController.getUser, (req, res) => {
