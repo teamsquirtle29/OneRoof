@@ -26,35 +26,6 @@ export const updateRole = (value) => ({
   payload: value
 })
 
-export const updateEvents = (data) => ({
-  type: types.UPDATE_EVENTS,
-  payload: data
-})
-
-
-export function getEvents () {
-  return (dispatch, getState) => {
-    const url = '/event'
-    const state = getState();
-    const header = {
-      "userId": state.user.userId,
-      "role": state.user.role
-    }
-    console.log(body);
-    return axios.get(url, {
-      headers: header
-    })
-      .then(response => {
-        return response.data
-      }).then(data => {
-        console.log(data)
-        dispatch({
-          type: types.UPDATE_EVENTS,
-          payload: data
-        })
-      })
-    }
-}
 
 // on sign up, a post request is sent/stored into our database. 
 // will return data of apt_id, name, pwd, and role

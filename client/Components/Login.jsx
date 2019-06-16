@@ -32,10 +32,12 @@ const Login = props => {
         <input key="sign2" type="password" id="signPass" value={props.password} placeholder="Password" onChange={e => props.updatePassword(e.target.value)}/>
         Apt#
         <select value={props.apt} onChange={e => props.updateApt(e.target.value)}>
+          <option>Select</option>
           {aptDrop}
         </select>
         Role
         <select value={props.role} onChange={e => props.updateRole(e.target.value)} >
+          <option>Select</option>
           <option value="Tenant">Tenant</option>
           <option value="Manager">Manager</option>
           <option value="Maintenance">Maintenance</option>

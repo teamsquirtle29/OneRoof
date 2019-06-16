@@ -5,7 +5,7 @@ function UserList(props) {
   let display = [];
   let userList = this.props.userList;
   userList.forEach(element => {
-    display.push(<li className ='listItem' onClick={(e)=>{this.props.changeMessageReceiver(element.id)}}>{element.username}</li>)
+    display.push(<li className ='listItem' onClick={(e)=>{this.props.changeMessageReceiver(element.userId)}}>{element.username}</li>)
   });
   return (
     <div>
