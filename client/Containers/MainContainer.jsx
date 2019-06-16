@@ -31,7 +31,7 @@ class MainContainer extends Component {
     let Display = [];
     
     const ManContainer = <ManContainer key="mainCon1" />
-    const TenantContainer = <UserContainer key="mainCon2" />
+    const TenantContainer = <TenantContainer key="mainCon2" />
 
     if(this.props.role === 'manager'){
       Display.push(ManContainer);
