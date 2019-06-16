@@ -7,9 +7,10 @@ import { bindActionCreators } from 'redux';
 
 const mapStateToProps = ({ store }) => ({
   // add pertinent state here
-  username: store.auth.username,
-  password: store.auth.password,
-  role: store.auth.role
+  username: store.user.username,
+  password: store.user.password,
+  role: store.user.role,
+  login: store.user
 });
 
 
