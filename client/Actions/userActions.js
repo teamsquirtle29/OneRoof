@@ -25,7 +25,7 @@ export const updateRole = (data) => ({
 // will return data of apt_id, name, pwd, and role
 export function signup () {
   return (dispatch, getState) => {
-    const url = '/api/signup'
+    const url = '/user'
     const state = getState();
     const body = {
       username: state.auth.username,
@@ -56,14 +56,16 @@ export function signup () {
 // will return data of apt_id, name, pwd, user_id, and role
 export function signIn () {
   return (dispatch, getState) => {
-    const url = '/api/signIn'
+    const url = '/user'
     const state = getState();
-    const body = {
+    const header = {
       username: state.auth.username,
       password: state.auth.password
     }
     console.log(body);
-    return axios.get(url, body)
+    return axios.get(url, {
+      headers: header
+    })
       .then(response => {
         return response.data
       }).then(data => {

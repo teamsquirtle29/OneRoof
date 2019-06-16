@@ -1,7 +1,7 @@
 import React from 'react';
 import AptNum from './aptDropDown.jsx'
 // let random = "username"
-const LOGIN = props => {
+const Login = props => {
   const aptDrop = [];
   props.aptList.forEach(apt => aptDrop.push(<AptNum key={'select' + apt} 
     apt={apt} aptSelect={props.aptSelect} />));
@@ -42,4 +42,4 @@ const LOGIN = props => {
     </div>
   </div>
 )};
-export default LOGIN;
+export default Login;
