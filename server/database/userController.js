@@ -55,7 +55,7 @@ module.exports = {
 
   getMessages(req, res, next) {
     let queryString = 'SELECT * FROM messages WHERE (sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)';
-    let values = [req.body.sender_id, req.body.receiver_id];
+    let values = [req.headers.sender_id, req.headers.receiver_id];
     db.query(queryString, values, (err, result) => {
       if (err) {
         return next(err);
