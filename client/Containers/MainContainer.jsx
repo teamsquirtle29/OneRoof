@@ -7,7 +7,7 @@ import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
 import { bindActionCreators } from 'redux';
 
-const mapStateToProps = ({ store }) => ({
+const mapStateToProps = store => ({
   // add pertinent state here
   username: store.user.username,
   password: store.user.password,
