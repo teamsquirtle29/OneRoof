@@ -11,7 +11,9 @@ import tenantEvents from '../Components/tenantEvents';
 
 
 const mapStateToProps = store => ({
-
+  role: store.user.role,
+  userId: store.user.userId,
+  aptId: store.user.aptId
 })
 
 const mapDispatchToProps = dispatch => {
@@ -24,15 +26,22 @@ const mapDispatchToProps = dispatch => {
 class tenantContainer extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      events : []
+    };
   }
 
   render() {
     return (
       <div>
         <nav>
-          <link to="/Payments" component={tenantPayments}></link>
-          <link to="/Event" component={tenantEvents}></link>
+          <link to="/Pay">Rent</link>
+          <link to="/Events">Events</link>
         </nav>
+        <main>
+          <Route path='Pay' userId={this.props.userId} aptId={this.props.aptId} component={tenantPayments}></Route>
+          <Route path='Events' eventList={this.state.events} component={tenantEvents}></Route>
+        </main>
       </div>
     )
   }
