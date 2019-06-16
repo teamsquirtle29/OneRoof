@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const userController = require('./database/userController.js');
 const managerController = require('./database/managerController.js');
@@ -8,6 +9,8 @@ const maintenanceController = require('./database/maintenanceController.js');
 const paymentRouter = require('./paymentRouter.js');
 
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, '/client')));
 
 // routes for multiple user types
 app.post('/user', userController.postUser, (req, res) => {
@@ -43,6 +46,10 @@ app.get('/allUsers', managerController.getAllUsers, (req, res) => {
   res.status(200).json(res.locals.result);
 });
 
+app.get('/allApartments', managerController.getAllApartments, (req, res) => {
+  res.status(200).json(res.locals.result);
+});
+
 app.use('/payments', paymentRouter);
 
 //error handling
@@ -54,4 +61,4 @@ app.use((err, req, res, next) =>{
   res.status(400).json({'msg':err});
 })
 
-app.listen(3001);
+app.listen(3000);

@@ -13,6 +13,17 @@ module.exports = {
     });
   },
 
+  getAllApartments(req, res, next) {
+    const queryString = 'SELECT * FROM apartments';
+    db.query(queryString, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+      res.locals.result = result.rows;
+      return next();
+    });
+  },
+
   deleteEvent(req, res, next) {
     const queryString = 'DELETE FROM events WHERE _id = $1'
     const values = [req.body.id];
