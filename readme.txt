@@ -22,7 +22,7 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
         (e.g. accepted maintenance request, apartment inspection, etc)
     GET: gets all events (only events in the future, ignores events that have passed) from table depending on role
       expects 'role' (role of current user) and 'user_id' (id of current user) in request header
-      if the role is 'manager', display all events
+      if the role is 'management', display all events
       if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
 
   '/messages'
