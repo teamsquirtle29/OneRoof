@@ -93,6 +93,7 @@ similar to our slack chatroom
 1. List of tenants (button) – GET request that will render the previous messages between the manager and tenant. (clear the previous messages from previous tenant)
 2. POST when manager inputs a new message, onchange for our input box and submit button.
 3. Drop down list of tenants (private or public event)
+4. All messages + the user we are talking to (which determines which messages are displayed) can be stored in React local state rather than Redux store
 
 
 -Tenant View
