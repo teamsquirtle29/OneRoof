@@ -37,8 +37,8 @@ export function getEvents () {
     const url = '/event'
     const state = getState();
     const header = {
-      userId: state.user.userId,
-      role: state.user.role
+      "userId": state.user.userId,
+      "role": state.user.role
     }
     console.log(body);
     return axios.get(url, {
@@ -93,22 +93,23 @@ export function signIn () {
   return (dispatch, getState) => {
     const url = '/user'
     const state = getState();
-    const header = {
-      "name": state.user.username,
-      "pwd": state.user.password
-    }
-    console.log(body);
+    // const header = {
+    //   "name": state.user.username,
+    //   "pwd": state.user.password
+    // }
+    //console.log(header);
     return axios.get(url, {
-      headers: header
+      headers: {
+        "name": state.user.username,
+        "pwd": state.user.password
+      }
     })
       .then(response => {
-        return response.data
-      }).then(data => {
-        console.log(data)
+        //console.log(response);
         let userData = {
-          "userId": data[0]['_id'],
-          "aptId": data[0]['apt_id'],
-          "role": data[0]['role']
+          "userId": response.data[0]['_id'],
+          "aptId": response.data[0]['apt_id'],
+          "role": response.data[0]['role']
         }
         dispatch({
           type: types.UPDATE_LOGIN,

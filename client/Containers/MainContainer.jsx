@@ -6,7 +6,6 @@ import * as manActions from '../Actions/manActions.js';
 import * as tenantActions from '../Actions/tenantActions.js';
 import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
-import { bindActionCreators } from 'redux';
 
 const mapStateToProps = store => ({
   // add pertinent state here
