@@ -30,9 +30,10 @@ const userReducers = (state = initialState, action) => {
     case types.UPDATE_LOGIN:
       return {
         ...state,
-        userId: action.payload,
-        aptId: '',
+        userId: action.payload.userId,
+        aptId: action.payload.aptId,
         password: '',
+        role: action.payload.role,
         login: true,
       }
     
