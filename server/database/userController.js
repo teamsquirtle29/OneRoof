@@ -38,13 +38,14 @@ module.exports = {
   },
 
   getEvent(req, res, next){
+    console.log('HEADERSZZZZZZ', req.headers);
     let queryString = '';
     let values = [];
     if(req.headers.role === 'Manager') {
       queryString = 'SELECT * FROM events';
       // queryString = 'SELECT * FROM events WHERE date >= NOW()';
     } else {
-      queryString = 'SELECT * FROM events WHERE (user_id = -1 OR user_id IS NULL OR user_id = $1)';
+      queryString = 'SELECT * FROM events WHERE (resident_id = -1 OR resident_id IS NULL OR resident_id = $1)';
       // queryString = 'SELECT * FROM events WHERE date >= NOW() AND (resident_id IS NULL OR resident_id = $1)';
       values = [req.headers.user_id];
     }

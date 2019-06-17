@@ -55,7 +55,7 @@ class TenantContainer extends Component {
           <main>
             <Route path="/payments" render={(props) => <PaymentContainer aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
             <Route path="/chat" render={(props) => <MessageContainer userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
-            <Route path="/events" render={(props) => <EventsContainer eventsList={this.state.eventList} isAuthed={true} />} />
+            <Route path="/events" render={(props) => <EventsContainer userId={this.props.userId} role={this.props.role} eventsList={this.state.eventList} isAuthed={true} />} />
           </main>
       </div>
     </Router>
