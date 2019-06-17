@@ -36,11 +36,17 @@ class Chat extends Component {
   }
 
   render() {
+    console.log('MESSAGES', this.props.messages)
     return (
       <div>
         <h4>Currently messaging: {this.props.receiverName}</h4>
         <div>
-          {JSON.stringify(this.props.messages)}
+          {this.props.messages.map(message => {
+            return (<div>
+              <h4>{message.sender_id === this.props.userId ? 'You' : this.props.receiverName}</h4>
+              <p>{message.text}</p>
+            </div>);
+          })}
         </div>
         <textarea onChange={this.updateMessage}></textarea>
         <button onClick={this.postMessage}>Send Message</button>
