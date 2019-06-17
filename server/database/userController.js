@@ -13,7 +13,6 @@ module.exports = {
 
   getUser(req, res, next) {
     const queryString = 'SELECT * FROM users WHERE pwd = $1 AND name = $2';
-    console.log(req.headers);
     const values = [req.headers.pwd, req.headers.name];
     db.query(queryString, values, (err, result) => {
       if (err) {
@@ -26,12 +25,14 @@ module.exports = {
 
   postEvent(req, res, next) {
     console.log(req.body);
-    const queryString = 'INSERT INTO events (date, description, type, user_id) VALUES ($1, $2, $3, $4)';
-    const values = [req.body.date, req.body.description, req.body.type, req.body.user_id];
+    const queryString = 'INSERT INTO events (date, description, type, resident_id) VALUES ($1, $2, $3, $4) RETURNING description';
+    const values = [req.body.date, req.body.description, req.body.type, req.body.resident_id];
     db.query(queryString, values, (err, result) => {
       if (err) {
+        console.log(err)
         return next(err);
       }
+      console.log(result);
       return next();
     });
   },
@@ -43,7 +44,7 @@ module.exports = {
       queryString = 'SELECT * FROM events';
       // queryString = 'SELECT * FROM events WHERE date >= NOW()';
     } else {
-      queryString = 'SELECT * FROM events WHERE (user_id IS NULL OR user_id = $1)';
+      queryString = 'SELECT * FROM events WHERE (user_id = -1 OR user_id IS NULL OR user_id = $1)';
       // queryString = 'SELECT * FROM events WHERE date >= NOW() AND (resident_id IS NULL OR resident_id = $1)';
       values = [req.headers.user_id];
     }
