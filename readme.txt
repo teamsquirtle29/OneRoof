@@ -52,7 +52,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   'payments/overdue'
     GET: get all overdue payments (where received is false)
 
-  'payments/now'
+  'payments/current'
     GET: get all payment information associated with the current month
 
 ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
