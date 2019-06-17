@@ -40,17 +40,22 @@ class EventsContainer extends Component {
   }
 
   //createEvent method for managers followed by a state update to re render the container with new event
-  CreateEvent(date, description, title){
+  CreateEvent(title, date, resident_id, description){
+    console.log(title, date, resident_id, description);
       fetch('/event', {
           method: 'POST',
-          body: {
-              'date': date,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              'date': date || null,
               'description': description,
               'type': title,
-              'resident_id': this.state.resident_id
-          }
+              'resident_id': resident_id || -1
+          })
       })
       .then(res => {
+        console.log('trying here')
         this.UpdateEvents();
       })
   }

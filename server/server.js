@@ -7,6 +7,7 @@ const managerController = require('./database/managerController.js');
 const paymentRouter = require('./paymentRouter.js');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, '../')));
 
