@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { NativeRouter } from "react-router-native";
-import { BrowserRouter } from "react-router-dom";
 
 
-class tenantPayments extends Component {
+class TenantPayments extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -34,15 +32,15 @@ class tenantPayments extends Component {
   
 
   render() {
-    const paymentDisplay = <paymentDisplay paymentHistory = {this.state.paymentHistory}/>
-    const makePayment = <makePayment aptId = {this.props.aptId}/>
+    const PaymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
+    const MakePayment = <MakePayment aptId = {this.props.aptId}/>
     return (
       <div>
-        {paymentDisplay}
-        {makePayment}
+        {PaymentDisplay}
+        {MakePayment}
       </div>
     )
   }
 }
 
-export default tenantPayments;
+export default TenantPayments;
