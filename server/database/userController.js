@@ -45,7 +45,7 @@ module.exports = {
     } else {
       queryString = 'SELECT * FROM events WHERE (user_id IS NULL OR user_id = $1)';
       // queryString = 'SELECT * FROM events WHERE date >= NOW() AND (resident_id IS NULL OR resident_id = $1)';
-      values = [req.headers.resident_id];
+      values = [req.headers.user_id];
     }
     db.query(queryString, values, (err, result) => {
       if (err) {
