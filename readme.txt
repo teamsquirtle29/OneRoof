@@ -16,14 +16,14 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     POST: creates event in 'events' table
       don't send this request until you've checked the role of the current user.
       management and maintenance can send a post to this route, residents cannot.
-      request body expects 'date', 'description', 'type', and 'resident_id'
-        assign NULL to resident_id if the event is meant to be public
+      request body expects 'date', 'description', 'type', and 'user_id'
+        assign NULL to user_id if the event is meant to be public
         assign the id of a specific resident to resident_id if the event is private and meant for a specific user
         (e.g. accepted maintenance request, apartment inspection, etc)
     GET: gets all events (only events in the future, ignores events that have passed) from table depending on role
       expects 'role' (role of current user) and 'user_id' (id of current user) in request header
-      if the role is 'management', display all events
-      if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
+      if the role is 'Manager', display all events
+      if role is 'Tenant', display only public events (with user_id of NULL) or events where their id is the event's 'user_id'
 
   '/messages'
     GET: gets all messages sent or received by a user

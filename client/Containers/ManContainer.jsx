@@ -26,12 +26,7 @@ class ManContainer extends Component {
 
   componentDidMount() {
     fetch('/allUsers', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        sender_id: this.props.userId,
-        receiver_id: this.props.receiver
-      }
+      method: 'GET'
     })
     .then(res => res.json())
     .then(res => console.log(res))
@@ -39,9 +34,25 @@ class ManContainer extends Component {
       userList: res
     }))
     .catch(err => console.log(err));
+    
+    // fetch('/event', {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     role: this.props.role,
+    //     user_id: this.props.userId
+    //   }
+    // })
+    // .then(res => res.json())
+    // .then(res => console.log(res))
+    // .then(res => this.setState({
+    //   eventList: res
+    // }))
+    // .catch(err => console.log(err));
+
   }
 
-  //component did mount get all users
+  //component did mount get all users and all events
   render() {
 
     return (

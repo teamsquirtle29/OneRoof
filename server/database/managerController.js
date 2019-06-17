@@ -36,7 +36,7 @@ module.exports = {
   },
 
   postPayment(req, res, next) {
-    const queryString = `SELECT DISTINCT apt_id FROM users WHERE role = 'resident'`;
+    const queryString = `SELECT DISTINCT apt_id FROM users WHERE role = 'Tenant'`;
     db.query(queryString, (err, result) => {
       if (err) {
         return err;
