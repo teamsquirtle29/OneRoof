@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import from child components...
-import * as userActions from '../Actions/userActions.js';
-import * as manActions from '../Actions/manActions.js';
-import ManContainer from './ManContainer.jsx';
-import TenantContainer from './TenantContainer.jsx';
-import { bindActionCreators } from 'redux';
-import tenantPayments from '../Components/tenantPayments';
-import tenantEvents from '../Components/tenantEvents';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import MessageContainer from './MessageContainer.jsx';
+import PaymentContainer from './PaymentContainer.jsx';
+import EventsContainer from './EventsContainer.jsx';
+
 
 
 const mapStateToProps = store => ({
@@ -23,29 +20,48 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-class tenantContainer extends Component {
+class TenantContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      events : []
+      eventList : []
     };
+  }
+
+  componentDidMount (){
+    fetch('/event', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        user_id: this.props.userId,
+        role: this.props.role
+      }
+    })
+      .then(res => res.json())
+      .then(res => this.setState({
+        eventList: res
+      }))
   }
 
   render() {
     return (
+    <Router>
       <div>
         <nav>
-          <link to="/Pay">Rent</link>
-          <link to="/Events">Events</link>
+          <Link to={"/payment"}>Payments</Link>
+          <Link to={"/events"}>Events</Link>
+          <Link to={"/chat"}>Messages</Link>
         </nav>
-        <main>
-          <Route path='Pay' userId={this.props.userId} aptId={this.props.aptId} component={tenantPayments}></Route>
-          <Route path='Events' eventList={this.state.events} component={tenantEvents}></Route>
-        </main>
+          <main>
+            <Route path="/payments" render={(props) => <PaymentContainer aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
+            <Route path="/chat" render={(props) => <MessageContainer userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
+            <Route path="/events" render={(props) => <EventsContainer eventsList={this.state.eventList} isAuthed={true} />} />
+          </main>
       </div>
+    </Router>
     )
   }
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(tenantContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TenantContainer);

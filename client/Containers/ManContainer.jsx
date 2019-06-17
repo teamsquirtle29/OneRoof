@@ -43,13 +43,6 @@ class ManContainer extends Component {
 
   //component did mount get all users and save eventsList and UserList in props and send to respective components.
   render() {
-<<<<<<< HEAD
-    // routes for <MessageContainer userList={this.props.userList}/>
-    // <EventsContainer eventsList={this.props.eventsList}/>
-    return (
-      <div>
-      </div>
-=======
 
     return (
       <Router>
@@ -67,7 +60,6 @@ class ManContainer extends Component {
       </main>
         </div>
       </Router>
->>>>>>> 61a3aec9f412ec989d04375af980df8eea575f23
     );
   } 
 }

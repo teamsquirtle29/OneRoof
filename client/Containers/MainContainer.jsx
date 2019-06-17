@@ -29,7 +29,7 @@ class MainContainer extends Component {
     return(
         <div className="container">
           <div className="outerBox">
-            <h1 id="header">{this.props.username}'s Dashboard {this.props.role}</h1>
+          <h1 id="header">{this.props.username}'s {this.props.role} Dashboard </h1>
             { this.props.role === 'Manager' ? manContainer : tenantContainer }
             {/* {manContainer} */}
           </div>
