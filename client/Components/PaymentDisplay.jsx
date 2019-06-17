@@ -9,11 +9,11 @@ class PaymentDisplay extends Component {
 
   render() {
     const paymentHistory = []
-    this.props.paymentHistory.forEach(element => paymentHistory.push(<li>Month:{JSON.stringify(element.month)} Amount: $200 Paid: {JSON.stringify(element.paid)} Received: {JSON.stringify(element.received)}</li>))
+    this.props.paymentHistory.forEach((element, index) => paymentHistory.push(<li key={index}>Month:{JSON.stringify(element.month)} Amount: $200 Sent: {JSON.stringify(element.sent)} Received: {JSON.stringify(element.received)}</li>))
     return (
       <div>
         <ul>
-          {PaymentHistory}
+          {paymentHistory}
         </ul>
       </div>
     )

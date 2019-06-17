@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { NativeRouter } from "react-router-native";
-import { BrowserRouter } from "react-router-dom";
-import TenantPayments from '/tenantPayments';
+
 
 class MakePayment extends Component {
   constructor(props) {
@@ -21,12 +19,15 @@ class MakePayment extends Component {
   sendPayment(event){
     fetch('/payments/send', {
       method: 'PUT',
-      body: { apt_id: this.props.aptId, month: this.state.month }
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ apt_id: this.props.aptId, month: this.state.month })
     })
     .then(res => {
-      this.props.UpdatePaymentDisplay();
+      this.props.updatePaymentDisplay();
     })
-  }
+  } 
 
   render() {
     
@@ -47,8 +48,9 @@ class MakePayment extends Component {
           <option value={10}>November</option>
           <option value={11}>December</option>
         </select>
-        <input type="text">Amount</input>
-        <input type="submit" onCick={this.sendPayment}>Submit</input>
+        Amount:
+        <input type="text"/>
+        <button type="submit" onClick={this.sendPayment}>Submit</button>
       </div>
     )
   }

@@ -10,9 +10,10 @@ class PaymentContainer extends Component {
   
   render() {
     const manPayments = <ManPayments aptList={this.props.aptList} />;
-    const tenantPayments = <TenantPayments userId={this.props.userId} />
+    const tenantPayments = <TenantPayments userId={this.props.userId} aptId={this.props.aptId}/>
     return (
       <div id='paymentDiv'>
+        Test, this working?
         {this.props.role === 'Manager' ? manPayments : tenantPayments}
       </div>
     );

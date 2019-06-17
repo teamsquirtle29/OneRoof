@@ -62,7 +62,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
 
   '/payments/history'
     GET: gets all payment history associated with a user / apartment
-      request body expects 'apt_id'
+      request headers expects 'apt_id'
 
 TODO
   allow manager to also see who HAS paid
