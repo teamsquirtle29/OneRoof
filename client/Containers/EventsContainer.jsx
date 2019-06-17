@@ -60,9 +60,9 @@ class EventsContainer extends Component {
   }
 
   render() {
+    console.log(this.state.eventList);
     return (
       <div>
-        Test
           <EventsDisplay eventList = {this.state.eventList}/>
         {
           this.props.role === 'Manager' &&
