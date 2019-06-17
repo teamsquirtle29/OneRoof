@@ -4,7 +4,7 @@ function EventsDisplay(props) {
     let display =[];
     let eventList = props.eventList;
     eventList.forEach(element =>{
-        display.push(<li>{element}</li>);
+        display.push(<li>{JSON.stringify(element)}</li>);
     })
     return (
       <div>

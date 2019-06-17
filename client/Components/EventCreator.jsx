@@ -8,7 +8,7 @@ class EventCreator extends Component {
       this.state = {
         title: '',
         date: '',
-        user_id: '',
+        resident_id: '',
         description: ''
       }
       this.changeField = this.changeField.bind(this);
@@ -24,7 +24,7 @@ class EventCreator extends Component {
     render() {
         return (
             <div>
-              <form className="eventsForm" onSubmit={(e)=>{this.props.createEvent(this.state.title, this.state.date, this.state.user_id, this.state.description)}}>
+              <form className="eventsForm" onSubmit={(e)=>{this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}}>
                   <label>
                       Title:
                   </label>
@@ -36,12 +36,12 @@ class EventCreator extends Component {
                   <label>
                       Tenant Id:
                   </label>
-                  <input type="text" name="user_id" defaultValue="null" id="user_id" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
+                  <input type="text" name="resident_id" defaultValue="null" id="resident_id" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
                   <label>
                       Description:
                   </label>
                   <input type="text" name="description" id="description" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
-                  <input class="button" type="submit" value="Submit"/>
+                  <input className="button" type="submit" value="Submit"/>
               </form>
             </div>
         );

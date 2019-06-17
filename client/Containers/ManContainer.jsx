@@ -50,7 +50,7 @@ class ManContainer extends Component {
       <main>
         <Route path="/payments" render={(props) => <PaymentContainer userList={this.state.userList} aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
         <Route path="/chat" render={(props) => <MessageContainer userList={this.state.userList} userId={this.props.userId} role={this.props.role} isAuthed={true}/>} />
-        <Route path="/events" render={(props) => <EventsContainer userList={this.state.userList} isAuthed={true}/>} />
+        <Route path="/events" render={(props) => <EventsContainer userList={this.state.userList} userId={this.props.userId} role={this.props.role} isAuthed={true}/>} />
       </main>
         </div>
       </Router>
