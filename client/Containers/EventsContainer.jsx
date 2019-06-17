@@ -27,7 +27,6 @@ class EventsContainer extends Component {
       return res.json();
     })
     .then(data =>{
-        console.log(data);
         return this.setState(state => {
             this.state.eventList = data;
             return this.state;

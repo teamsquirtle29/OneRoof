@@ -20,11 +20,12 @@ class MessageContainer extends Component {
   }
 
   render() {
+    console.log('props on message container', JSON.stringify(this.props));
     return (
       <div>
         <Chat userId={this.props.userId} receiver={this.state.currentlyMessaging}/>
         {
-          this.props.role === 'manager' &&
+          this.props.role === 'Manager' &&
           <UserList handleChange={this.changeMessageReceiver} userList={this.props.userList}/>
         }
       </div>

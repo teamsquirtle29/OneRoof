@@ -24,11 +24,8 @@ class ManContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/allUsers', {
-      method: 'GET'
-    })
+    fetch('/allUsers')
     .then(res => res.json())
-    .then(res => console.log(res))
     .then(res => this.setState({
       userList: res
     }))
@@ -37,7 +34,6 @@ class ManContainer extends Component {
 
   //component did mount get all users and save eventList and UserList in props and send to respective components.
   render() {
-
     return (
       <Router>
         <div>
