@@ -5,29 +5,38 @@ import EventsDisplay from './../Components/EventsDisplay.jsx';
 class EventsContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      eventList: []
+    }
     this.CreateEvent = this.CreateEvent.bind(this);
     this.UpdateEvents = this.UpdateEvents.bind(this);
   }
 
-  // componentDidMount(){
-  //   this.UpdateEvents();
-  // }
+  componentDidMount(){
+    this.UpdateEvents();
+
+  }
   //   might need to check the id we are sending to update events!
   //   update events updates the eventslist sent as props from the container before it!
   UpdateEvents(){
     fetch('/event', {
         method:'GET',
-        headers: {'Content-Type': 'application/json','resident_id':`${this.props.id}`, 'role':`${this.props.role}`}
+        headers: {'Content-Type': 'application/json','user_id':`${this.props.userId}`, 'role':`${this.props.role}`}
       })
     .then(res => {
       return res.json();
     })
     .then(data =>{
-        return this.setState(state=>{
-            this.state.eventsList = data;
+        console.log(data);
+        return this.setState(state => {
+            this.state.eventList = data;
             return this.state;
         })
     })
+    .then(() =>{
+      console.log(this.state.eventList);
+      return;
+      })
   }
 
   //createEvent method for managers followed by a state update to re render the container with new event
@@ -38,7 +47,7 @@ class EventsContainer extends Component {
               'date': date,
               'description': description,
               'type': title,
-              'user_id': this.state.userId
+              'resident_id': this.state.resident_id
           }
       })
       .then(res => {
@@ -49,10 +58,11 @@ class EventsContainer extends Component {
   render() {
     return (
       <div>
-          <EventsDisplay eventList = {this.props.eventList}/>
+        Test
+          <EventsDisplay eventList = {this.state.eventList}/>
         {
-          this.props.role === 'management' &&
-          <EventCreator eventList = {this.props.eventList} createEvent = {this.CreateEvent}/>
+          this.props.role === 'Manager' &&
+          <EventCreator eventList = {this.state.eventList} createEvent = {this.CreateEvent}/>
         }
       </div>
     );
