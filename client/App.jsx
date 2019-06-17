@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import MainContainer from './Containers/MainContainer.jsx'
 import { connect } from 'react-redux';
+import MainContainer from './Containers/MainContainer.jsx'
 import Login from './Components/login.jsx';
 import * as userActions from './Actions/userActions.js';
-import * as manActions from './Actions/manActions.js';
-import * as tenantActions from './Actions/tenantActions.js';
-import { bindActionCreators } from 'redux';
+
 
 const mapStateToProps = store => ({
   // add pertinent state here
@@ -21,7 +19,6 @@ const mapStateToProps = store => ({
 const mapDispatchToProps = dispatch => ({
   updateUsername: (name) => dispatch(userActions.updateUsername(name)),
   updatePassword: (pass) => dispatch(userActions.updatePassword(pass)),
-  updateEvents: () => dispatch(userActions.updateUsername()),
   signup: () => dispatch(userActions.signup()),
   signIn: () => dispatch(userActions.signIn()),
   updateApt: (apt) => dispatch(userActions.updateApt(apt)),
@@ -38,9 +35,8 @@ class App extends Component {
     const logComponent = <Login signIn={this.props.signIn} apt={this.props.apt} role={this.props.role} username={this.props.username} password={this.props.password} 
     aptList={this.props.aptList} updateApt={this.props.updateApt} updateRole={this.props.updateRole} updateUsername={this.props.updateUsername} updatePassword={this.props.updatePassword} signup={this.props.signup}/>;
 
-    const mainContainer = <MainContainer key="mainCon2" useId={this.props.userId}/>;
+    const mainContainer = <MainContainer key="mainCon2" />;
 
-    console.log(this.props.login);
 
     return(
       <div className="App">

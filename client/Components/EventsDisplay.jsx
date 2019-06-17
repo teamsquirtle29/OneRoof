@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 
 function EventsDisplay(props) {
     let display =[];
-    let eventsList = this.props.eventsList;
-    eventsList.forEach(element =>{
+    let eventList = props.eventList;
+    eventList.forEach(element =>{
         display.push(<li>{element}</li>);
     })
     return (

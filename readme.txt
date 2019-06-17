@@ -16,14 +16,14 @@ ENDPOINTS THAT CAN BE USED BY MULTIPLE USER TYPES
     POST: creates event in 'events' table
       don't send this request until you've checked the role of the current user.
       management and maintenance can send a post to this route, residents cannot.
-      request body expects 'date', 'description', 'type', and 'resident_id'
-        assign NULL to resident_id if the event is meant to be public
+      request body expects 'date', 'description', 'type', and 'user_id'
+        assign NULL to user_id if the event is meant to be public
         assign the id of a specific resident to resident_id if the event is private and meant for a specific user
         (e.g. accepted maintenance request, apartment inspection, etc)
     GET: gets all events (only events in the future, ignores events that have passed) from table depending on role
       expects 'role' (role of current user) and 'user_id' (id of current user) in request header
-      if the role is 'management', display all events
-      if role is 'resident', display only public events (with resident_id of NULL) or events where their id is the event's 'resident_id'
+      if the role is 'Manager', display all events
+      if role is 'Tenant', display only public events (with user_id of NULL) or events where their id is the event's 'user_id'
 
   '/messages'
     GET: gets all messages sent or received by a user
@@ -39,7 +39,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   '/allApartments'
     GET: gets a list of all apartments for manager
 
-  '/event'
+  '/events'
     DELETE: deletes event from events table
       request body expects an event id
 
@@ -52,9 +52,6 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   'payments/overdue'
     GET: get all overdue payments (where received is false)
 
-  'payments/paid'
-    GET: get all completed payments (where received is true)
-
   'payments/now'
     GET: get all payment information associated with the current month
 
@@ -66,6 +63,9 @@ ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
   '/payments/history'
     GET: gets all payment history associated with a user / apartment
       request body expects 'apt_id'
+
+TODO
+  allow manager to also see who HAS paid
   
 
 
@@ -96,7 +96,7 @@ Event Line component (LI):  dates, title, description, inner delete button. Uniq
 - messages:
 similar to our slack chatroom 
 1. List of tenants (button) – GET request that will render the previous messages between the manager and tenant. (clear the previous messages from previous tenant)
-2. POST when manager inputs a new message, onchange for our input box and submit button.
+2. POST when manager inputs a new message, onchange for our input box and submit button. \
 3. Drop down list of tenants (private or public event)
 4. All messages + the user we are talking to (which determines which messages are displayed) can be stored in React local state rather than Redux store
 

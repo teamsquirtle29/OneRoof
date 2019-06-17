@@ -1,6 +1,6 @@
 const express = require('express');
 const managerController = require('./database/managerController.js');
-const residentController = require('./database/residentController.js');
+const tenantController = require('./database/tenantController.js');
 
 const paymentRouter = express.Router();
 
@@ -25,11 +25,11 @@ paymentRouter.get('/current', managerController.getCurrent, (req, res) => {
     res.status(200).json(res.locals.result);
 });
 
-paymentRouter.put('/send', residentController.sendPayment, (req, res) => {
+paymentRouter.put('/send', tenantController.sendPayment, (req, res) => {
     res.status(200).json({'msg':'payment sent'});
 })
 
-paymentRouter.get('/history', residentController.getHistory, (req, res) => {
+paymentRouter.get('/history', tenantController.getHistory, (req, res) => {
   res.status(200).json(res.locals.result);
 })
 

@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 
 //events creator have in local state all the fields in the form;
 //This way we can save on change and send it to create event method from the eventsContainer.
-class EventsContainer extends Component {
+class EventCreator extends Component {
     constructor(props) {
       super(props);
       this.state = {
         title: '',
         date: '',
-        resident_id: '',
+        user_id: '',
         description: ''
       }
       this.changeField = this.changeField.bind(this);
@@ -24,7 +24,7 @@ class EventsContainer extends Component {
     render() {
         return (
             <div>
-              <form className="eventsForm" onSubmit={(e)=>{this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}}>
+              <form className="eventsForm" onSubmit={(e)=>{this.props.createEvent(this.state.title, this.state.date, this.state.user_id, this.state.description)}}>
                   <label>
                       Title:
                   </label>
@@ -34,9 +34,9 @@ class EventsContainer extends Component {
                   </label>
                   <input type="text" name="date" id="date" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
                   <label>
-                      Resident Id:
+                      Tenant Id:
                   </label>
-                  <input type="text" name="resident_id" defaultValue="null" id="resident_id" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
+                  <input type="text" name="user_id" defaultValue="null" id="user_id" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
                   <label>
                       Description:
                   </label>

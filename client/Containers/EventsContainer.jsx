@@ -9,11 +9,11 @@ class EventsContainer extends Component {
     this.UpdateEvents = this.UpdateEvents.bind(this);
   }
 
-  componentDidMount(){
-    this.UpdateEvents();
-  }
-    //might need to check the id we are sending to update events!
-    //update events updates the eventslist sent as props from the container before it!
+  // componentDidMount(){
+  //   this.UpdateEvents();
+  // }
+  //   might need to check the id we are sending to update events!
+  //   update events updates the eventslist sent as props from the container before it!
   UpdateEvents(){
     fetch('/event', {
         method:'GET',
@@ -31,14 +31,14 @@ class EventsContainer extends Component {
   }
 
   //createEvent method for managers followed by a state update to re render the container with new event
-  createEvent(date, description, title, id){
+  CreateEvent(date, description, title){
       fetch('/event', {
           method: 'POST',
           body: {
               'date': date,
               'description': description,
               'type': title,
-              'resident_id': id
+              'user_id': this.state.userId
           }
       })
       .then(res => {
@@ -49,10 +49,10 @@ class EventsContainer extends Component {
   render() {
     return (
       <div>
-          <EventsDisplay eventsList = {this.props.eventsList}/>
+          <EventsDisplay eventList = {this.props.eventList}/>
         {
           this.props.role === 'management' &&
-          <EventCreator eventsList = {this.props.eventsList} createEvent = {this.createEvent}/>
+          <EventCreator eventList = {this.props.eventList} createEvent = {this.CreateEvent}/>
         }
       </div>
     );

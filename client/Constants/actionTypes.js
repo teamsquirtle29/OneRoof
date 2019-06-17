@@ -7,5 +7,3 @@ export const UPDATE_APT = 'UPDATE_APT';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const UPDATE_LOGIN = 'UPDATE_LOGIN';
-export const UPDATE_EVENTS = 'UPDATE_EVENTS';
-export const GET_EVENTS = 'GET_EVENTS';
