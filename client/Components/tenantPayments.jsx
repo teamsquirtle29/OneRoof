@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PaymentDisplay from "./PaymentDisplay";
-import MakePayment from "./MakePayment";
 
 
 class TenantPayments extends Component {
@@ -39,12 +37,12 @@ class TenantPayments extends Component {
   
   
   render() {
-    const paymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
-    const makePayment = <MakePayment aptId ={this.props.aptId} updatePaymentDisplay={this.updatePaymentDisplay}/>
+    const PaymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
+    const MakePayment = <MakePayment aptId = {this.props.aptId}/>
     return (
       <div>
-        {paymentDisplay}
-        {makePayment}
+        {PaymentDisplay}
+        {MakePayment}
       </div>
     )
   }
