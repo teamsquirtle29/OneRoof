@@ -4,27 +4,10 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
       messageToSend: ''
     }
     this.updateMessage = this.updateMessage.bind(this);
     this.postMessage = this.postMessage.bind(this);
-  }
-
-  componentDidMount() {
-    fetch('/messages', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        sender_id: this.props.userId,
-        receiver_id: this.props.receiver
-      }
-    })
-    .then(res => res.json())
-    .then(res => this.setState({
-      messages: res
-    }))
-    .catch(err => console.log(err));
   }
 
   updateMessage(e) {
@@ -55,8 +38,9 @@ class Chat extends Component {
   render() {
     return (
       <div>
+        <h4>Currently messaging: {this.props.receiverName}</h4>
         <div>
-          {this.state.messages}
+          {JSON.stringify(this.props.messages)}
         </div>
         <textarea onChange={this.updateMessage}></textarea>
         <button onClick={this.postMessage}>Send Message</button>
