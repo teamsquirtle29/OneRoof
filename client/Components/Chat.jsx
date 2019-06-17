@@ -21,7 +21,6 @@ class Chat extends Component {
       }
     })
     .then(res => res.json())
-    .then(res => console.log(res))
     .then(res => this.setState({
       messages: res
     }))
@@ -42,12 +41,12 @@ class Chat extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
           text: this.state.messageToSend,
           sender_id: this.props.userId,
           receiver_id: this.props.receiver,
           timestamp: null
-        }
+        })
       })
       .catch(err => console.log(err));
     }
