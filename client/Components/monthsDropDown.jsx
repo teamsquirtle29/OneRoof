@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const monthsDropDown = (props) => {
+const Months = (props) => {
   return (
-    <option key={} value={} />
+    <option key={'select' + props.month} value={props.month}>{props.month}</option>
   )
 }
 
-export default monthsDropDown; 
+export default Months; 

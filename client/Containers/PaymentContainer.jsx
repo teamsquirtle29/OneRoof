@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
+import TenantPayments from '../Components/TenantPayments.jsx';
+import ManPayments from '../Components/ManPayments.jsx';
+
 
 class PaymentContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
   }
-
+  
   render() {
+    const manPayments = <ManPayments aptList={this.props.aptList} />;
+    const tenantPayments = <TenantPayments userId={this.props.userId} aptId={this.props.aptId}/>
     return (
-      <div>
+      <div id='paymentDiv'>
+        Test, this working?
+        {this.props.role === 'Manager' ? manPayments : tenantPayments}
       </div>
     );
   }
