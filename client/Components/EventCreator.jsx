@@ -22,6 +22,11 @@ class EventCreator extends Component {
         }))
     }
     render() {
+        console.log(this.props.userList);
+        const userDisplay = [];
+        this.props.userList.forEach(element => {
+            userDisplay.push(<option name="resident_id" id="resident_id" value={element._id}>{element.name}</option>);
+        })
         return (
             <div>
                   <label>
@@ -35,7 +40,12 @@ class EventCreator extends Component {
                   <label>
                       Tenant Id:
                   </label>
-                  <input type="text" name="resident_id" defaultValue="null" id="resident_id" onChange={(e)=>{this.changeField(e.target.value, 'resident_id')}}/>
+                  <select value={this.resident_id} onChange={(e)=>{this.changeField(e.target.value, 'resident_id')}} >
+                        <option>
+                            Select
+                        </option>
+                        {userDisplay}
+                  </select>
                   <label>
                       Description:
                   </label>

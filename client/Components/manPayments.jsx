@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import ManPayDisplay from './ManPayDisplay.jsx'
 import CreatePayments from './CreatePayments.jsx'
 import ReceivePayments from './ReceivePayments.jsx'
-import { stringify } from 'querystring';
 
 class ManPayments extends Component {
   constructor(props) {
@@ -79,11 +78,7 @@ class ManPayments extends Component {
   }
 
   updateApt(apt) {
-    return this.setState(state => {
-      console.log(apt)
-      this.state.apt_id = apt;
-      return this.state;
-    })
+    return this.setState({apt_id: apt})
   }
 
   updateMonth(month) {
@@ -101,16 +96,12 @@ class ManPayments extends Component {
         <div id='manPayDiv'>
           {manPayDisplay}
         </div>
-        <div>
           <div id='createPayDiv'>
             {createPayments}
           </div>
-        </div>
-        <div>
           <div id='receivePayDiv'>
             {receivePayments} 
           </div>
-        </div>
       </div>
     )
   }
