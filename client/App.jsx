@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MainContainer from './Containers/MainContainer.jsx'
-import Login from './Components/login.jsx';
+import Login from './Components/Login.jsx';
 import * as userActions from './Actions/userActions.js';
 
 

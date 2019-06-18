@@ -1,26 +1,54 @@
 import React, { Component } from 'react';
-import { NativeRouter } from "react-router-native";
-import { BrowserRouter } from "react-router-dom";
+import PaymentDisplay from './PaymentDisplay.jsx';
+import MakePayment from './MakePayment.jsx';
 
 
-class tenantPayments extends Component {
+
+class TenantPayments extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      paymentHistory: []
+    }
+    this.updatePaymentDisplay = this.updatePaymentDisplay.bind(this);
   }
 
   componentDidMount() {
-    fetch()
-    method: 'get'
-    // userId
+    this.updatePaymentDisplay();
   }
 
+  
+  updatePaymentDisplay(){
+    fetch('/payments/history', {
+    method: 'GET',
+    headers: { apt_id: this.props.aptId }
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(data =>{
+        return this.setState(state => {
+            this.state.paymentHistory = data;
+            return this.state;
+        })
+    })
+    .then(() =>{
+      console.log(this.state.paymentHistory);
+      return;
+      })
+  }
+  
+  
   render() {
+    const paymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
+    const makePayment = <MakePayment aptId = {this.props.aptId} updatePaymentDisplay={this.updatePaymentDisplay}/>
     return (
       <div>
-
+        {paymentDisplay}
+        {makePayment}
       </div>
     )
   }
 }
 
-export default tenantPayments;
+export default TenantPayments;
