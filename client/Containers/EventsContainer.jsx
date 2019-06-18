@@ -66,7 +66,7 @@ class EventsContainer extends Component {
           <EventsDisplay eventList = {this.state.eventList}/>
         {
           this.props.role === 'Manager' &&
-          <EventCreator eventList = {this.state.eventList} createEvent = {this.CreateEvent}/>
+          <EventCreator eventList = {this.state.eventList} userList={this.props.userList} createEvent={this.CreateEvent}/>
         }
       </div>
     );
