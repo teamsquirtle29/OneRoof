@@ -3,8 +3,12 @@ import React, {Component} from 'react';
 function EventsDisplay(props) {
     let display =[];
     let eventList = props.eventList;
-    eventList.forEach(element =>{
-        display.push(<li>{JSON.stringify(element)}</li>);
+    eventList.forEach((element, index) =>{
+        display.push(<li key={index} >
+          <h3>{element.type}</h3>
+          <p>{element.description}</p>
+          <p>{element.date}</p>
+        </li>);
     })
     return (
       <div>

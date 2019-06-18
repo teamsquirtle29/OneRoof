@@ -24,11 +24,8 @@ class ManContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/allUsers', {
-      method: 'GET'
-    })
+    fetch('/allUsers')
     .then(res => res.json())
-    .then(res => console.log(res))
     .then(res => this.setState({
       userList: res
     }))
@@ -37,7 +34,6 @@ class ManContainer extends Component {
 
   //component did mount get all users and save eventList and UserList in props and send to respective components.
   render() {
-
     return (
       <Router>
         <div>
@@ -50,7 +46,7 @@ class ManContainer extends Component {
       </nav>
 
       <main>
-        <Route path="/payments" render={(props) => <PaymentContainer aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
+        <Route path="/payments" render={(props) => <PaymentContainer userList={this.state.userList} aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
         <Route path="/chat" render={(props) => <MessageContainer userList={this.state.userList} userId={this.props.userId} role={this.props.role} isAuthed={true}/>} />
         <Route path="/events" render={(props) => <EventsContainer userList={this.state.userList} userId={this.props.userId} role={this.props.role} isAuthed={true}/>} />
       </main>

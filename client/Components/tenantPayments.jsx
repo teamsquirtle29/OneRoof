@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PaymentDisplay from './PaymentDisplay.jsx';
+import MakePayment from './MakePayment.jsx';
+
 
 
 class TenantPayments extends Component {
@@ -7,18 +10,23 @@ class TenantPayments extends Component {
     this.state = {
       paymentHistory: []
     }
+    this.updatePaymentDisplay = this.updatePaymentDisplay.bind(this);
   }
 
   componentDidMount() {
-    fetch('/payment/history', {
+    this.updatePaymentDisplay();
+  }
+
+  
+  updatePaymentDisplay(){
+    fetch('/payments/history', {
     method: 'GET',
-    body: { apt_id: this.props.aptId }
+    headers: { apt_id: this.props.aptId }
     })
     .then(res => {
       return res.json();
     })
     .then(data =>{
-        console.log(data);
         return this.setState(state => {
             this.state.paymentHistory = data;
             return this.state;
@@ -30,14 +38,14 @@ class TenantPayments extends Component {
       })
   }
   
-
+  
   render() {
-    const PaymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
-    const MakePayment = <MakePayment aptId = {this.props.aptId}/>
+    const paymentDisplay = <PaymentDisplay paymentHistory = {this.state.paymentHistory}/>
+    const makePayment = <MakePayment aptId = {this.props.aptId} updatePaymentDisplay={this.updatePaymentDisplay}/>
     return (
       <div>
-        {PaymentDisplay}
-        {MakePayment}
+        {paymentDisplay}
+        {makePayment}
       </div>
     )
   }

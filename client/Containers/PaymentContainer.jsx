@@ -34,10 +34,16 @@ class PaymentContainer extends Component {
   }
   
   render() {
+<<<<<<< HEAD
     const manPayments = <ManPayments aptList={this.props.aptList} monthKey={this.state.monthKey} monthTranslate={this.monthTranslate}/>;
     const tenantPayments = <TenantPayments userId={this.props.userId} monthTranslate={this.monthTranslate} monthKey={this.state.monthKey}/>
+=======
+    const manPayments = <ManPayments aptList={this.props.aptList} />;
+    const tenantPayments = <TenantPayments userId={this.props.userId} aptId={this.props.aptId}/>
+>>>>>>> 5ae1afc56a541de8838a77786757ce96cb59601d
     return (
       <div id='paymentDiv'>
+        Test, this working?
         {this.props.role === 'Manager' ? manPayments : tenantPayments}
       </div>
     );

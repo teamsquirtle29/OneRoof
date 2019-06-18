@@ -4,28 +4,10 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
       messageToSend: ''
     }
     this.updateMessage = this.updateMessage.bind(this);
     this.postMessage = this.postMessage.bind(this);
-  }
-
-  componentDidMount() {
-    fetch('/messages', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        sender_id: this.props.userId,
-        receiver_id: this.props.receiver
-      }
-    })
-    .then(res => res.json())
-    .then(res => console.log(res))
-    .then(res => this.setState({
-      messages: res
-    }))
-    .catch(err => console.log(err));
   }
 
   updateMessage(e) {
@@ -42,22 +24,29 @@ class Chat extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
           text: this.state.messageToSend,
           sender_id: this.props.userId,
           receiver_id: this.props.receiver,
           timestamp: null
-        }
+        })
       })
       .catch(err => console.log(err));
     }
   }
 
   render() {
+    console.log('MESSAGES', this.props.messages)
     return (
       <div>
+        <h4>Currently messaging: {this.props.receiverName}</h4>
         <div>
-          {this.state.messages}
+          {this.props.messages.map(message => {
+            return (<div>
+              <h4>{message.sender_id === this.props.userId ? 'You' : this.props.receiverName}</h4>
+              <p>{message.text}</p>
+            </div>);
+          })}
         </div>
         <textarea onChange={this.updateMessage}></textarea>
         <button onClick={this.postMessage}>Send Message</button>

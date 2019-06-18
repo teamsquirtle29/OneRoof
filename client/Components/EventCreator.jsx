@@ -16,33 +16,31 @@ class EventCreator extends Component {
   
     //still need to test this method!
     changeField(field, fieldName){
-        return this.setState(state => {
-            this.state[fieldName] = field;
-            return this.state;
-        })
+        console.log(this.state);
+        return this.setState(state => ({
+            [fieldName] : field
+        }))
     }
     render() {
         return (
             <div>
-              <form className="eventsForm" onSubmit={(e)=>{this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}}>
                   <label>
                       Title:
                   </label>
-                  <input type="text" name="title" id='title' onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
+                  <input type="text" name="title" id='title' onChange={(e)=>{this.changeField(e.target.value, 'title')}}/>
                   <label>
                       Date:
                   </label>
-                  <input type="text" name="date" id="date" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
+                  <input type="text" name="date" id="date" onChange={(e)=>{this.changeField(e.target.value, 'date')}}/>
                   <label>
                       Tenant Id:
                   </label>
-                  <input type="text" name="resident_id" defaultValue="null" id="resident_id" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
+                  <input type="text" name="resident_id" defaultValue="null" id="resident_id" onChange={(e)=>{this.changeField(e.target.value, 'resident_id')}}/>
                   <label>
                       Description:
                   </label>
-                  <input type="text" name="description" id="description" onChange={(e)=>{this.changeField(e.target.value, e.target.id)}}/>
-                  <input className="button" type="submit" value="Submit"/>
-              </form>
+                  <input type="text" name="description" id="description" onChange={(e)=>{this.changeField(e.target.value, 'description')}}/>
+                  <button onClick={(e)=>{console.log('YOOO'); this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}}>Submit</button>
             </div>
         );
     }

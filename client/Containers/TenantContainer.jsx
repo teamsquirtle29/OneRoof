@@ -48,14 +48,14 @@ class TenantContainer extends Component {
     <Router>
       <div>
         <nav>
-          <Link to={"/payment"}>Payments</Link>
+          <Link to={"/payments"}>Payments</Link>
           <Link to={"/events"}>Events</Link>
           <Link to={"/chat"}>Messages</Link>
         </nav>
           <main>
-            <Route path="/payments" render={(props) => <PaymentContainer aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
+            <Route path="/payments" render={(props) => <PaymentContainer aptId={this.props.aptId} aptList={this.props.aptList} userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
             <Route path="/chat" render={(props) => <MessageContainer userId={this.props.userId} role={this.props.role} isAuthed={true} />} />
-            <Route path="/events" render={(props) => <EventsContainer eventsList={this.state.eventList} isAuthed={true} />} />
+            <Route path="/events" render={(props) => <EventsContainer userId={this.props.userId} role={this.props.role} eventsList={this.state.eventList} isAuthed={true} />} />
           </main>
       </div>
     </Router>

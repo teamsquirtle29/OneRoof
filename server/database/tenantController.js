@@ -15,7 +15,7 @@ module.exports = {
 
   getHistory(req, res, next) {
     const queryString = 'SELECT * FROM payments WHERE apt_id = $1';
-    const values = [req.body.apt_id];
+    const values = [req.headers.apt_id];
     db.query(queryString, values, (err, result) => {
       if (err) {
         return next(err);

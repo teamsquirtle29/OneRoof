@@ -52,7 +52,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY MANAGERS
   'payments/overdue'
     GET: get all overdue payments (where received is false)
 
-  'payments/now'
+  'payments/current'
     GET: get all payment information associated with the current month
 
 ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
@@ -62,7 +62,7 @@ ENDPOINTS THAT CAN BE USED ONLY BY RESIDENTS
 
   '/payments/history'
     GET: gets all payment history associated with a user / apartment
-      request body expects 'apt_id'
+      request headers expects 'apt_id'
 
 TODO
   allow manager to also see who HAS paid

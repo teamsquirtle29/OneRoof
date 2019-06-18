@@ -2,10 +2,12 @@ import React from 'react';
 
 
 function UserList(props) {
+  console.log('userlist props', props);
   let display = [];
-  let userList = this.props.userList;
+  let userList = props.userList;
   userList.forEach(element => {
-    display.push(<li className ='listItem' onClick={(e)=>{this.props.changeMessageReceiver(element.userId)}}>{element.username}</li>)
+    console.log('look for USER ID not APARTMENT ID', element);
+    display.push(<li className ='listItem' onClick={()=>{props.handleChange(element.user_id, element.name)}}>{element.name}</li>)
   });
   return (
     <div>
