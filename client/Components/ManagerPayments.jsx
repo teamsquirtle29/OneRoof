@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import ManPayDisplay from './ManPayDisplay.jsx'
+import ManagerPaymentDisplay from './ManagerPaymentDisplay.jsx'
 import CreatePayments from './CreatePayments.jsx'
 import ReceivePayments from './ReceivePayments.jsx'
 
-class ManPayments extends Component {
+class ManagerPayments extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,11 +33,9 @@ class ManPayments extends Component {
         return res.json();
       })
       .then(data =>{
-          console.log('overdue: ', data);
           return this.setState({paymentsOverdue: data})
       })
       .then(() =>{
-        console.log(this.state.paymentsOverdue);
         return;
         })
   
@@ -48,7 +46,6 @@ class ManPayments extends Component {
            return res.json()
           })
         .then(data => {
-          console.log('current: ', data)
           return this.setState({currentPayments: data})
         })
    }
@@ -72,7 +69,6 @@ class ManPayments extends Component {
         })
     })
     .then(res => {
-      console.log(res);
       this.updatePayments();
     })
   }
@@ -87,7 +83,7 @@ class ManPayments extends Component {
 
 
   render() {
-    const manPayDisplay = <ManPayDisplay paymentsOverdue={this.state.paymentsOverdue} monthTranslate={this.props.monthTranslate} currentPayments={this.state.currentPayments} monthKey={this.props.monthKey}/>
+    const manPayDisplay = <ManagerPaymentDisplay paymentsOverdue={this.state.paymentsOverdue} monthTranslate={this.props.monthTranslate} currentPayments={this.state.currentPayments} monthKey={this.props.monthKey}/>
     const createPayments = <CreatePayments createPay={this.createPay} />
     const receivePayments = <ReceivePayments aptList={this.props.aptList} monthTranslate={this.props.monthTranslate} receivePay={this.receivePay} updateApt={this.updateApt} monthKey={this.props.monthKey} updateMonth={this.updateMonth} />
 
@@ -107,4 +103,4 @@ class ManPayments extends Component {
   }
 }
 
-export default ManPayments;
+export default ManagerPayments;

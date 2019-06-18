@@ -40,7 +40,6 @@ class MessageContainer extends Component {
   }
 
   changeMessageReceiver(user, name) {
-    console.log('userId', user)
     this.setState({
       currentlyMessaging: user,
       currentlyMessagingName: name
@@ -48,7 +47,6 @@ class MessageContainer extends Component {
   }
 
   render() {
-    console.log('state on message container', this.state);
     return (
       <div class="container">
         <Chat userId={this.props.userId} receiver={this.state.currentlyMessaging} receiverName={this.state.currentlyMessagingName} messages={this.state.messages}/>

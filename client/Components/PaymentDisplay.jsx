@@ -9,7 +9,6 @@ class PaymentDisplay extends Component {
 
   render() {
     const paymentHistory = []
-    console.log('WHERE IS PAYMENT HISTORY', this.props);
     this.props.paymentHistory.forEach((element, index) => paymentHistory.push(<li key={index}>Month:{JSON.stringify(element.month)} Amount: $200 Sent: {JSON.stringify(element.sent)} Received: {JSON.stringify(element.received)}</li>))
     return (
       <div>

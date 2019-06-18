@@ -1,12 +1,11 @@
 import React from 'react';
 
-const ManPayDisplay = (props) => {
+const ManagerPaymentDisplay = (props) => {
     let currentDisplay = [];
     let overdueDisplay = [];
     const paymentsOverdue = props.paymentsOverdue;
     const currentPayments = props.currentPayments;
     paymentsOverdue.forEach(element => {
-        console.log(props.monthTranslate(element.month));
         overdueDisplay.push(<li>{'Apt#: '} {JSON.stringify(element.apt_id)} {' Month: '} {props.monthTranslate(element.month)} {' Paid: '} {JSON.stringify(element.sent)} </li>);
     })
     currentPayments.forEach(element => {
@@ -32,4 +31,4 @@ const ManPayDisplay = (props) => {
     );
 }
 
-export default ManPayDisplay;
+export default ManagerPaymentDisplay;

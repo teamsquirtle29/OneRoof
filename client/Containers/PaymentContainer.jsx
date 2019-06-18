@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TenantPayments from '../Components/TenantPayments.jsx';
-import ManPayments from '../Components/ManPayments.jsx';
+import TenantPayments from '../Components/tenantPayments.jsx';
+import ManagerPayments from '../Components/ManagerPayments.jsx';
 
 
 class PaymentContainer extends Component {
@@ -34,7 +34,7 @@ class PaymentContainer extends Component {
   }
   
   render() {
-    const manPayments = <ManPayments aptList={this.props.aptList} monthKey={this.state.monthKey} monthTranslate={this.monthTranslate}/>;
+    const manPayments = <ManagerPayments aptList={this.props.aptList} monthKey={this.state.monthKey} monthTranslate={this.monthTranslate}/>;
     const tenantPayments = <TenantPayments aptId={this.props.aptId} userId={this.props.userId} monthTranslate={this.monthTranslate} monthKey={this.state.monthKey}/>
     return (
       <div id='paymentDiv'>

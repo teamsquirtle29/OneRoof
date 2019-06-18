@@ -28,11 +28,7 @@ class TenantPayments extends Component {
     })
     .then(data =>{
         return this.setState({paymentHistory: data})
-    })
-    .then(() =>{
-      console.log(this.state.paymentHistory);
-      return;
-      })
+    });
   }
   
   

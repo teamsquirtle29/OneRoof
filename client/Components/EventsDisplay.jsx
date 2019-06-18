@@ -6,7 +6,6 @@ function EventsDisplay(props) {
     eventList.forEach((element, index) =>{
         let date;
         typeof element.date === 'string' ? date = new Date(element.date) : date = '';
-        console.log(element.date)
         display.push(<li key={index} >
           <h3>{element.type}</h3>
           <p>{element.description}</p>

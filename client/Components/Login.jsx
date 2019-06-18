@@ -1,12 +1,9 @@
 import React from 'react';
-import AptNum from './AptDropDown.jsx'
+import AptNum from './ApartmentDropDown.jsx'
 
 const Login = props => {
   const aptDrop = [];
   const aptNumList = props.aptList;
-  console.log(props.apt);
-  console.log(props.username);
-  console.log(props.role);
   aptNumList.forEach(num => aptDrop.push(<AptNum aptNum={num} />));
 
   return(

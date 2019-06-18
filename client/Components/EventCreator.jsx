@@ -16,13 +16,11 @@ class EventCreator extends Component {
   
     //still need to test this method!
     changeField(field, fieldName){
-        console.log(this.state);
         return this.setState(state => ({
             [fieldName] : field
         }))
     }
     render() {
-        console.log(this.props.userList);
         const userDisplay = [];
         this.props.userList.forEach(element => {
             userDisplay.push(<option name="resident_id" id="resident_id" value={element._id}>{element.name}</option>);
@@ -50,7 +48,7 @@ class EventCreator extends Component {
                       Description:
                   </label>
                   <input type="text" name="description" id="description" onChange={(e)=>{this.changeField(e.target.value, 'description')}}/>
-                  <button onClick={(e)=>{console.log('YOOO'); this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}}>Submit</button>
+                  <button onClick={(e)=>this.props.createEvent(this.state.title, this.state.date, this.state.resident_id, this.state.description)}>Submit</button>
             </div>
         );
     }
