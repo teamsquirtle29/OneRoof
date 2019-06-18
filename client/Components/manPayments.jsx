@@ -35,10 +35,7 @@ class ManPayments extends Component {
       })
       .then(data =>{
           console.log('overdue: ', data);
-          return this.setState(state => {
-              this.state.paymentsOverdue = data;
-              return this.state;
-          })
+          return this.setState({paymentsOverdue: data})
       })
       .then(() =>{
         console.log(this.state.paymentsOverdue);
@@ -53,10 +50,7 @@ class ManPayments extends Component {
           })
         .then(data => {
           console.log('current: ', data)
-          return this.setState(state => {
-            this.state.currentPayments = data;
-            return this.state;
-          })
+          return this.setState({currentPayments: data})
         })
    }
 
@@ -93,11 +87,7 @@ class ManPayments extends Component {
   }
 
   updateMonth(month) {
-    return this.setState(state => {
-      console.log('month:', this.props.monthKey[month]);
-      this.state.month = this.props.monthKey[month];
-      return this.state;
-    })
+    return this.setState({month: this.props.monthKey[month]})
   }
 
 
