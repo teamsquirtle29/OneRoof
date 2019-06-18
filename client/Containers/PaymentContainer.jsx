@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TenantPayments from '../Components/TenantPayments.jsx';
-import ManPayments from '../Components/ManPayments.jsx';
+import TenantPayments from '../Components/tenantPayments.jsx';
+import ManPayments from '../Components/manPayments.jsx';
 
 
 class PaymentContainer extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import from child components...
-import * as userActions from '../Actions/userActions.js';
+//import * as userActions from '../Actions/userActions.js';
 import ManContainer from './ManContainer.jsx';
 import TenantContainer from './TenantContainer.jsx';
 

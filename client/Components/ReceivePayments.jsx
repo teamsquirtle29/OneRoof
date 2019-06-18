@@ -1,6 +1,6 @@
 import React from 'react';
-import AptNum from './AptDropDown.jsx'
-import Months from './MonthsDropDown.jsx'
+import AptNum from './aptDropDown.jsx'
+import Months from './monthsDropDown.jsx'
 
 
 const ReceivePayments = (props) => {

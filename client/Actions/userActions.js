@@ -1,4 +1,4 @@
-import * as types from "../constants/actionTypes"
+import * as types from "../Constants/actionTypes"
 import axios from 'axios';
 
 export const updateUsername = (value) => ({
