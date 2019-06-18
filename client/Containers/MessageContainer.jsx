@@ -40,6 +40,7 @@ class MessageContainer extends Component {
   }
 
   changeMessageReceiver(user, name) {
+    console.log('userId', user)
     this.setState({
       currentlyMessaging: user,
       currentlyMessagingName: name

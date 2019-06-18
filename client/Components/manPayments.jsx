@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ManPayDisplay from './ManPayDisplay.jsx'
 import CreatePayments from './CreatePayments.jsx'
 import ReceivePayments from './ReceivePayments.jsx'
+import { stringify } from 'querystring';
 
 class ManPayments extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ManPayments extends Component {
       paymentsOverdue: [],
       currentPayments: [],
       apt_id: '',
-      month: ''
+      month: '',
     }
     this.updatePayments = this.updatePayments.bind(this);
     this.createPay = this.createPay.bind(this);
@@ -21,7 +22,7 @@ class ManPayments extends Component {
   }
 
   componentDidMount() {
-    this.updatePayments;
+    this.updatePayments();
     return;
   }
 
@@ -33,7 +34,7 @@ class ManPayments extends Component {
         return res.json();
       })
       .then(data =>{
-          console.log(data);
+          console.log('overdue: ', data);
           return this.setState(state => {
               this.state.paymentsOverdue = data;
               return this.state;
@@ -44,12 +45,14 @@ class ManPayments extends Component {
         return;
         })
   
-        fetch('/payments/now', {
+        fetch('/payments/current', {
           method: 'GET'
         })
-        .then(res => res.json())
+        .then(res =>{
+           return res.json()
+          })
         .then(data => {
-          console.log(data)
+          console.log('current: ', data)
           return this.setState(state => {
             this.state.currentPayments = data;
             return this.state;
@@ -69,18 +72,21 @@ class ManPayments extends Component {
   receivePay() {
     fetch('/payments', {
         method: 'PUT',
-        body: {
-          "apt_id": this.state.apt_id,
-          "month": this.state.month
-        }
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          apt_id: this.state.apt_id,
+          month: this.state.month
+        })
     })
     .then(res => {
+      console.log(res);
       this.updatePayments();
     })
   }
 
   updateApt(apt) {
     return this.setState(state => {
+      console.log(apt)
       this.state.apt_id = apt;
       return this.state;
     })
@@ -88,29 +94,32 @@ class ManPayments extends Component {
 
   updateMonth(month) {
     return this.setState(state => {
-      this.state.month = month;
+      console.log('month:', this.props.monthKey[month]);
+      this.state.month = this.props.monthKey[month];
       return this.state;
     })
   }
 
 
   render() {
-    const manPayDisplay = <ManPayDisplay paymentsOverdue={this.state.paymentsOverdue} currentPayments={this.state.currentPayments}/>
+    const manPayDisplay = <ManPayDisplay paymentsOverdue={this.state.paymentsOverdue} monthTranslate={this.props.monthTranslate} currentPayments={this.state.currentPayments} monthKey={this.props.monthKey}/>
     const createPayments = <CreatePayments createPay={this.createPay} />
-    const receivePayments = <ReceivePayments aptList={this.props.aptList} receivePay={this.receivePay} updateApt={this.updateApt} updateMonth={this.updateMonth} />
+    const receivePayments = <ReceivePayments aptList={this.props.aptList} monthTranslate={this.props.monthTranslate} receivePay={this.receivePay} updateApt={this.updateApt} monthKey={this.props.monthKey} updateMonth={this.updateMonth} />
 
     return (
       <div>
-        <div>
+        <div id='manPayDiv'>
           {manPayDisplay}
         </div>
         <div>
-          <span>
-          {createPayments}
-          </span>
-          <span>
-          {receivePayments}
-          </span>
+          <div id='createPayDiv'>
+            {createPayments}
+          </div>
+        </div>
+        <div>
+          <div id='receivePayDiv'>
+            {receivePayments} 
+          </div>
         </div>
       </div>
     )

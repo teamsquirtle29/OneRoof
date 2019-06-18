@@ -6,7 +6,7 @@ function UserList(props) {
   let display = [];
   let userList = props.userList;
   userList.forEach(element => {
-    console.log('look for USER ID not APARTMENT ID', element);
+    console.log('ELEMENT', element)
     display.push(<li className ='listItem' onClick={()=>{props.handleChange(element.user_id, element.name)}}>{element.name}</li>)
   });
   return (

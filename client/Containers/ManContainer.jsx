@@ -37,8 +37,10 @@ class ManContainer extends Component {
     return (
       <Router>
         <div>
-          <nav>
+      <nav id='manLinks'>
+        <span>
         <Link to={`/payments`}>Payments</Link>
+        </span>
         <Link to={`/chat`}>Messages</Link>
         <Link to={`/events`}>Events</Link>
       </nav>

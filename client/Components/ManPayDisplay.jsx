@@ -6,25 +6,28 @@ const ManPayDisplay = (props) => {
     const paymentsOverdue = props.paymentsOverdue;
     const currentPayments = props.currentPayments;
     paymentsOverdue.forEach(element => {
-        overdueDisplay.push(<li>Month: {JSON.stringify(element.month)} Apt#: {JSON.stringify(element.apt_id)}</li>);
+        console.log(props.monthTranslate(element.month));
+        overdueDisplay.push(<li>{'Month: '} {props.monthTranslate(element.month)} {' Apt#: '} {JSON.stringify(element.apt_id)}</li>);
     })
     currentPayments.forEach(element => {
-      currentDisplay.push(<li>Apt#: {JSON.stringify(element.apt_id)} Paid: {JSON.stringify(element.paid)} Received: {JSON.stringify(element.received)}</li>);
+      currentDisplay.push(<li>{'Apt#: '} {JSON.stringify(element.apt_id)} {' Month: '} {props.monthTranslate(element.month)} {' Paid: '} {JSON.stringify(element.sent)} {' Received: '} {JSON.stringify(element.received)}</li>);
   })
 
   
     return (
       <div>
-        <span>
+        <div>
+          Current Month Payments
           <ul>
-            Current Month Payments
             {currentDisplay}
           </ul>
+        </div>
+        <div>
+          Overdue Payments
           <ul>
-            Overdue Payments
             {overdueDisplay}
           </ul>
-        </span>
+        </div>
       </div>
     );
 }
