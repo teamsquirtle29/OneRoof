@@ -36,7 +36,6 @@ class Chat extends Component {
   }
 
   render() {
-    console.log('MESSAGES', this.props.messages)
     return (
       <div>
         <h4>Currently messaging: {this.props.receiverName}</h4>

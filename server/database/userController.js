@@ -3,7 +3,6 @@ const db = require('./index.js');
 module.exports = {
   postUser(req, res, next) {
     const queryString = 'INSERT INTO users (pwd, name, apt_id, role) VALUES ($1, $2, $3, $4) RETURNING _id';
-    console.log(req.body);
     const values = [req.body.pwd, req.body.name, req.body['apt_id'], req.body.role];
     db.query(queryString, values, (err, result)=>{
         res.locals.result = result.rows;
@@ -24,7 +23,6 @@ module.exports = {
   },
 
   postEvent(req, res, next) {
-    console.log(req.body);
     const queryString = 'INSERT INTO events (date, description, type, resident_id) VALUES ($1, $2, $3, $4) RETURNING description';
     const values = [req.body.date, req.body.description, req.body.type, req.body.resident_id];
     db.query(queryString, values, (err, result) => {
@@ -32,13 +30,11 @@ module.exports = {
         console.log(err)
         return next(err);
       }
-      console.log(result);
       return next();
     });
   },
 
   getEvent(req, res, next){
-    console.log('HEADERSZZZZZZ', req.headers);
     let queryString = '';
     let values = [];
     if(req.headers.role === 'Manager') {

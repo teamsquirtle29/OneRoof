@@ -1,4 +1,4 @@
-import * as types from "../constants/actionTypes"
+import * as types from "../Constants/actionTypes"
 import axios from 'axios';
 
 export const updateUsername = (value) => ({
@@ -39,12 +39,10 @@ export function signup () {
       "role": state.user.role,
       "apt_id": state.user.apt
     }
-    console.log(body);
     return axios.post(url, body)
       .then(response => {
         return response.data
       }).then(data => {
-        console.log(data)
         let userData = {
           userId: data[0]['_id'],
           aptId: state.user.username,
@@ -64,11 +62,6 @@ export function signIn () {
   return (dispatch, getState) => {
     const url = '/user'
     const state = getState();
-    // const header = {
-    //   "name": state.user.username,
-    //   "pwd": state.user.password
-    // }
-    //console.log(header);
     return axios.get(url, {
       headers: {
         "name": state.user.username,
@@ -76,7 +69,6 @@ export function signIn () {
       }
     })
       .then(response => {
-        //console.log(response);
         let userData = {
           "userId": response.data[0]['_id'],
           "aptId": response.data[0]['apt_id'],

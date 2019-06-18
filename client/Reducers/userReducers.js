@@ -31,7 +31,6 @@ const userReducers = (state = initialState, action) => {
       }
     
     case types.UPDATE_LOGIN:
-      console.log('User: ', action.payload.userId);
       return {
         ...state,
         userId: action.payload.userId,

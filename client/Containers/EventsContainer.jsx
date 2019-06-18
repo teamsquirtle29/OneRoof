@@ -33,14 +33,12 @@ class EventsContainer extends Component {
         })
     })
     .then(() =>{
-      console.log(this.state.eventList);
       return;
       })
   }
 
   //createEvent method for managers followed by a state update to re render the container with new event
   CreateEvent(title, date, resident_id, description){
-    console.log(title, date, resident_id, description);
       fetch('/event', {
           method: 'POST',
           headers: {
@@ -53,14 +51,12 @@ class EventsContainer extends Component {
               'resident_id': resident_id || -1
           })
       })
-      .then(res => {
-        console.log('trying here')
+      .then(() => {
         this.UpdateEvents();
       })
   }
 
   render() {
-    console.log(this.state.eventList);
     return (
       <div>
           <EventsDisplay eventList = {this.state.eventList}/>

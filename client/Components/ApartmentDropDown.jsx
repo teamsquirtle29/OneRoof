@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const AptDropDown = (props) => {
+const ApartmentDropDown = (props) => {
   return (
     <option key={'select' + props.aptNum} value={props.aptNum}>{props.aptNum}</option>
   )
 }
 
-export default AptDropDown; 
+export default ApartmentDropDown; 
