@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ManPayDisplay from './ManPayDisplay.jsx'
-import CreatePayments from './CreatePayments.jsx'
+import CreatePayments from './createPayments.jsx'
 import ReceivePayments from './ReceivePayments.jsx'
 
 class ManPayments extends Component {
