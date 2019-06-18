@@ -73,8 +73,11 @@ module.exports = {
   },
   
   getOverdue(req, res, next){
-    const queryString = 'SELECT * FROM payments WHERE received = false';
-    db.query(queryString, (err, result) => {
+    const date = new Date(Date.now());
+    const month = date.getMonth();
+    const values = [month];
+    const queryString = 'SELECT * FROM payments WHERE month < $1 AND received = false';
+    db.query(queryString, values, (err, result) => {
       if(err) return next(err);
       res.locals.result = result.rows;
       return next();
@@ -95,7 +98,7 @@ module.exports = {
   getCurrent(req, res, next) {
     const date = new Date(Date.now());
     const month = date.getMonth();
-    const queryString = 'SELECT * FROM payments WHERE month = $1';
+    const queryString = 'SELECT * FROM payments WHERE month >= $1';
     const values = [month];
     db.query(queryString, values, (err, result) => {
       if (err) {
