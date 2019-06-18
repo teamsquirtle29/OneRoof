@@ -50,7 +50,7 @@ class MessageContainer extends Component {
   render() {
     console.log('state on message container', this.state);
     return (
-      <div>
+      <div class="container">
         <Chat userId={this.props.userId} receiver={this.state.currentlyMessaging} receiverName={this.state.currentlyMessagingName} messages={this.state.messages}/>
         {
           this.props.role === 'Manager' &&

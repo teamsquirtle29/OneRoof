@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif;
+}
+
+#manLinks {
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+a {
+  padding: 15px;
+}
+
+.listItem {
+  border: 1px solid black;
+  border-radius: 20%;
+  background-color: rgb(151, 194, 231);
+}
+
+.listItemContainer {
+  margin: 35px;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.listItem:hover {
+  cursor: pointer;
+  background-color: rgb(86, 141, 189);
+}
+
+.container {
+  display: flex;
+}
