@@ -40,7 +40,7 @@ class App extends Component {
 
     return(
       <div className="App">
-        <h1>Welcome to 1Roof</h1>
+        <h1>Welcome to NewtRoof</h1>
         { this.props.login === false ? logComponent : mainContainer }
       </div>
     )
